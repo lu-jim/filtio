@@ -42,4 +42,52 @@ companies_data.each do |company_data|
   end
 end
 
+# Create sample participants
+participants_data = [
+  "Sarah Chen",
+  "Michael Rodriguez", 
+  "David Kumar",
+  "Emily Johnson",
+  "Alex Thompson",
+  "Maria Garcia",
+  "John Smith (VC Partner)",
+  "Lisa Wang (Investment Analyst)",
+  "Robert Davis (Senior Associate)"
+]
+
+participants_data.each do |participant_name|
+  Participant.find_or_create_by!(name: participant_name)
+end
+
+# Create sample calls with transcripts
+companies = Company.all
+participants = Participant.all
+
+companies.each_with_index do |company, index|
+  # Create 2-3 calls per company
+  (2..3).to_a.sample.times do |call_num|
+    call_date = Date.current - (index * 7 + call_num * 2).days
+    call_time = Time.parse("#{9 + call_num * 2}:00")
+    
+    call = company.calls.find_or_create_by!(
+      call_date: call_date,
+      call_time: call_time
+    ) do |c|
+      c.transcript_file = "Sample transcript content for #{company.name} call ##{call_num + 1}\n\nDiscussion topics:\n- Market opportunity\n- Revenue model\n- Team expansion\n- Funding requirements\n\nKey takeaways:\n- Strong product-market fit\n- Experienced founding team\n- Clear path to profitability"
+    end
+    
+    # Add 3-5 participants per call (including company founders and VCs)
+    company_participants = participants.select { |p| company.founders.any? { |f| f.name == p.name } }
+    vc_participants = participants.select { |p| p.name.include?("VC") || p.name.include?("Investment") || p.name.include?("Associate") }
+    
+    selected_participants = (company_participants + vc_participants.sample(2)).uniq.sample([company_participants.size + 2, 5].min)
+    
+    selected_participants.each do |participant|
+      call.call_participants.find_or_create_by!(participant: participant)
+    end
+  end
+end
+
 puts "Created #{Company.count} companies with #{Founder.count} founders"
+puts "Created #{Participant.count} participants"
+puts "Created #{Call.count} calls with transcript tracking"

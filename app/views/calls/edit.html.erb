@@ -1,0 +1,14 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">Edit Call for <%= @company.name %></h1>
+      <p class="text-gray-600">Update call details and transcript from <%= @call.call_date.strftime("%B %d, %Y") %></p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="bg-white rounded-lg shadow-lg p-8">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

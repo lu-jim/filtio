@@ -1,0 +1,73 @@
+<div class="max-w-2xl mx-auto">
+  <%= form_with(model: [@company, @call], local: true, class: "space-y-6") do |form| %>
+    <% if @call.errors.any? %>
+      <div class="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-red-800">
+              Please fix the following errors:
+            </h3>
+            <div class="mt-2 text-sm text-red-700">
+              <ul class="list-disc pl-5 space-y-1">
+                <% @call.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+
+    <!-- Date and Time -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div>
+        <%= form.label :call_date, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.date_field :call_date, class: "w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+      
+      <div>
+        <%= form.label :call_time, class: "block text-sm font-medium text-gray-700 mb-2" %>
+        <%= form.time_field :call_time, class: "w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+      </div>
+    </div>
+
+    <!-- Participants Selection -->
+    <div>
+      <label class="block text-sm font-medium text-gray-700 mb-2">Participants</label>
+      <div class="bg-gray-50 border border-gray-300 rounded-lg p-4 max-h-48 overflow-y-auto">
+        <% @participants.each do |participant| %>
+          <div class="flex items-center mb-2">
+            <%= check_box_tag 'participant_ids[]', participant.id, 
+                              (@call.persisted? ? @call.participants.include?(participant) : false),
+                              class: "h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded",
+                              id: "participant_#{participant.id}" %>
+            <%= label_tag "participant_#{participant.id}", participant.name, 
+                         class: "ml-2 text-sm text-gray-900" %>
+          </div>
+        <% end %>
+      </div>
+      <p class="mt-2 text-sm text-gray-500">Select all participants who attended this call.</p>
+    </div>
+
+    <!-- Transcript -->
+    <div>
+      <%= form.label :transcript_file, "Call Transcript", class: "block text-sm font-medium text-gray-700 mb-2" %>
+      <%= form.text_area :transcript_file, rows: 12, 
+                         placeholder: "Enter the full transcript of the call...", 
+                         class: "w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500" %>
+      <p class="mt-2 text-sm text-gray-500">Include the complete transcript or key discussion points from the call.</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
+      <%= link_to 'Cancel', @company, class: 'bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200' %>
+      <%= form.submit class: 'bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-lg transition duration-200' %>
+    </div>
+  <% end %>
+</div>

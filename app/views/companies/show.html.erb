@@ -92,11 +92,81 @@
       </div>
     </div>
 
+    <!-- Calls Section -->
+    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-2xl font-semibold text-gray-900">Investment Calls</h2>
+        <%= link_to 'Add New Call', new_company_call_path(@company), class: 'bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200' %>
+      </div>
+      
+      <% if @calls.any? %>
+        <div class="space-y-4">
+          <% @calls.each do |call| %>
+            <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 hover:border-gray-300 transition duration-200">
+              <div class="flex justify-between items-start">
+                <div class="flex-1">
+                  <div class="flex items-center mb-3">
+                    <div class="flex items-center text-gray-600 mr-6">
+                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                      </svg>
+                      <%= call.call_date.strftime("%B %d, %Y") %>
+                    </div>
+                    <div class="flex items-center text-gray-600">
+                      <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <%= call.call_time.strftime("%I:%M %p") %>
+                    </div>
+                  </div>
+                  
+                  <% if call.participants.any? %>
+                    <div class="mb-3">
+                      <span class="text-sm font-medium text-gray-700">Participants: </span>
+                      <span class="text-sm text-gray-600"><%= call.participants.pluck(:name).join(', ') %></span>
+                    </div>
+                  <% end %>
+                  
+                  <% if call.transcript_file.present? %>
+                    <div class="text-sm text-gray-600">
+                      <span class="font-medium">Transcript preview:</span>
+                      <p class="mt-1 line-clamp-2"><%= truncate(call.transcript_file, length: 150) %></p>
+                    </div>
+                  <% end %>
+                </div>
+                
+                <div class="flex space-x-2 ml-6">
+                  <%= link_to 'View', company_call_path(@company, call), class: 'text-blue-600 hover:text-blue-800 text-sm font-medium' %>
+                  <%= link_to 'Edit', edit_company_call_path(@company, call), class: 'text-green-600 hover:text-green-800 text-sm font-medium' %>
+                  <%= link_to 'Delete', company_call_path(@company, call), method: :delete, 
+                              confirm: 'Are you sure? This will permanently delete the call transcript.', 
+                              class: 'text-red-600 hover:text-red-800 text-sm font-medium' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        
+        <% if @calls.count > 5 %>
+          <div class="mt-6 text-center">
+            <p class="text-sm text-gray-500">Showing most recent calls</p>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="text-center py-12 bg-gray-50 rounded-lg border border-gray-200">
+          <div class="text-6xl mb-4">📞</div>
+          <h3 class="text-lg font-medium text-gray-900 mb-2">No calls recorded yet</h3>
+          <p class="text-gray-600 mb-6">Start tracking investment calls and transcripts for this company</p>
+          <%= link_to 'Record First Call', new_company_call_path(@company), class: 'bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200' %>
+        </div>
+      <% end %>
+    </div>
+
     <!-- Actions -->
     <div class="flex justify-center space-x-4">
       <%= link_to 'Edit Company', edit_company_path(@company), class: 'bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200' %>
       <%= link_to 'Delete Company', @company, method: :delete, 
-                  confirm: 'Are you sure? This will also delete all founders.', 
+                  confirm: 'Are you sure? This will also delete all founders and calls.', 
                   class: 'bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200' %>
     </div>
   </div>

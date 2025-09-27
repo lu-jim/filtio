@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   # Companies routes
   resources :companies do
     resources :founders, except: [:index]
+    resources :calls, except: [:index]
   end
 
   # Defines the root path route ("/")
