@@ -1,0 +1,29 @@
+Transcript – Industry Expert #1
+
+Kfund: Thanks for speaking with us. To start, how do you see the treasury management space evolving in Europe?
+
+Expert: It’s definitely heating up. Ten years ago, only enterprises bothered with treasury systems. Now, mid-market CFOs want real-time visibility too. That’s why you see players like Embat, Agicap, and Trovata gaining traction.
+
+Kfund: How would you position Embat within that landscape?
+
+Expert: They’re in a good spot — targeting companies that have outgrown Excel but don’t want a full-blown Kyriba. That mid-market segment is underserved.
+
+Kfund: Do you think their product is differentiated?
+
+Expert: To some extent. Their UX is very strong, probably the best in Southern Europe. But functional depth is still limited. For example, their forecasting and FX modules lag behind. Customers notice that.
+
+Kfund: And what about adoption speed — they claim two weeks on average.
+
+Expert: [chuckles] That’s optimistic. Two to four weeks is possible if you’re a straightforward client. But with ERP complexity, it can stretch to two months. It’s not unusual, but the gap between promise and reality matters.
+
+Kfund: Understood. How do you assess their go-to-market execution?
+
+Expert: They’ve been smart — starting in Spain, then expanding regionally. But scaling outbound sales in B2B fintech is expensive. Unless they crack partnerships with banks or auditors, CAC will climb quickly.
+
+Kfund: Do you think their team has what it takes to execute?
+
+Expert: The founders are impressive — strong finance and tech backgrounds. But they’ll need more senior leadership as they move upmarket. Right now, a lot of institutional processes are missing.
+
+Kfund: If you were evaluating them for Series B, what would you look for?
+
+Expert: Clear evidence of repeatable sales motion outside Spain, deeper integrations, and proof that customers actually expand usage over time. If churn is low and expansion is real, then they have a solid story.

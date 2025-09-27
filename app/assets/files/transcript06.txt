@@ -1,0 +1,33 @@
+Transcript – Customer #3
+
+Kfund: Thanks for making the time. Could you tell us how your company is currently using Embat?
+
+Customer: We mainly use it for cash visibility and daily reconciliations. It gives us a cleaner overview than Excel, which is good.
+
+Kfund: How was the onboarding experience for your team?
+
+Customer: Honestly, more complex than we expected. The sales pitch was “live in 10 days,” but for us it took almost six weeks. We had to rely heavily on their support team to get our ERP connection stable.
+
+Kfund: Understood. And now that you’re live, how satisfied are you with the product overall?
+
+Customer: Mixed feelings. The dashboards are intuitive, but the forecasting module is still too basic for our needs. We often export data back to Excel for deeper analysis.
+
+Kfund: Have you considered alternatives?
+
+Customer: We looked at Kyriba, but it felt too heavy for our size. That’s why we gave Embat a chance. I’d say they’re a good middle ground, but not yet a full replacement for everything we do.
+
+Kfund: What’s the biggest strength you see in Embat?
+
+Customer: Customer support, definitely. They’re quick to respond, and I give them credit for listening to feedback.
+
+Kfund: And the biggest weakness?
+
+Customer: [pauses] Integrations. They cover the main banks, yes, but for smaller ones we still have manual workarounds. Also, the pricing model worries me — every new module seems like an add-on, and I’m not sure how sustainable that will be for us long term.
+
+Kfund: Has Embat made your team more efficient, despite these issues?
+
+Customer: Somewhat. We save time on reconciliations, but since we’re still double-checking numbers in Excel, the overall efficiency gain is less than what was promised.
+
+Kfund: Would you recommend Embat to another CFO?
+
+Customer: With caveats. I’d say it’s a good tool if you’re okay being patient while they mature. For companies expecting a polished, enterprise-grade solution today, I’d hesitate.

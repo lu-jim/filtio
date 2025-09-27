@@ -3,6 +3,7 @@
   "type": "module",
   "devDependencies": {
     "@types/bun": "^1.2.22",
+    "@types/node": "^24.5.2",
     "vite": "^5.4.20",
     "vite-plugin-ruby": "^5.1.1"
   },

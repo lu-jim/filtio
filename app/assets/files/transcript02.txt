@@ -1,0 +1,33 @@
+Transcript – Founder #1
+
+Kfund: Thanks for joining today. To start, can you give us the elevator pitch for Embat?
+
+Founder: Of course. Embat is a real-time treasury management platform for mid-sized companies. We help CFOs gain visibility into their cash flows, automate reconciliation, and integrate directly with banks and ERPs. Our goal is to make financial teams as agile as product teams.
+
+Kfund: What do you see as your main competitive advantage in this space?
+
+Founder: Honestly, it’s the speed and simplicity of implementation. Legacy systems take months to roll out, while we get customers up and running in under two weeks. Plus, we offer pre-built connectors to the top 30 banks in Europe.
+
+Kfund: Interesting. Some startups exaggerate “ease of use.” Can you share evidence from your current customers?
+
+Founder: Absolutely. One of our early adopters, a Spanish logistics company, went live in 10 days. Their CFO said it felt like “plug and play.” We also track onboarding satisfaction internally — our NPS post-onboarding is 72, which is way above industry norms.
+
+Kfund: That’s impressive. Let’s talk about the team. Who’s leading product and engineering?
+
+Founder: I co-founded Embat with my partner, who was previously at JP Morgan’s treasury desk. He brings deep domain expertise. On the tech side, our CTO built scalable systems at Cabify. The three of us — business, finance, and tech — cover the critical pillars.
+
+Kfund: And how do you handle disagreements within the founding team?
+
+Founder: [laughs] Good question. We’ve known each other for six years, so we’re comfortable challenging ideas. For example, I tend to push for aggressive go-to-market, while our CTO emphasizes robustness. We try to meet in the middle by validating with customers before committing.
+
+Kfund: Speaking of go-to-market, what’s been your most effective growth channel so far?
+
+Founder: Referrals, hands down. Once CFOs see the dashboards, they share them in their network. That said, we’ve recently invested in outbound sales — we doubled our SDR team in Q2, and early results are promising.
+
+Kfund: How confident are you in scaling that sales engine efficiently?
+
+Founder: I’d say very confident. Our sales cycle is around 60 days, which is already shorter than the 90–120 day norm in this market. We’re training the team with playbooks we developed based on the first 50 deals.
+
+Kfund: Last one for me: what keeps you up at night as you think about this Series B?
+
+Founder: Making sure we don’t lose focus. There’s always a temptation to expand product scope too early, but we’re staying disciplined around treasury. If we execute well here, the adjacencies — like FX hedging or payments — will come naturally.

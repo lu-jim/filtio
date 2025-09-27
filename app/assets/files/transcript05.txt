@@ -1,0 +1,37 @@
+Transcript – Customer #2
+
+Kfund: Thanks for speaking with us. Could you start by sharing why you chose Embat in the first place?
+
+Customer: Sure. We were looking for something lighter than Kyriba but more robust than Excel. Embat hit that sweet spot — modern interface, but without the enterprise-level complexity.
+
+Kfund: How long have you been using it now?
+
+Customer: About 14 months. We signed right after their Series A, actually.
+
+Kfund: And in that time, how has your experience been?
+
+Customer: Very good overall. The biggest gain is transparency — I can log in at any time and see consolidated balances across all our banks. That’s something we didn’t have before.
+
+Kfund: Has it impacted your team’s efficiency?
+
+Customer: Definitely. Month-end close used to take six days; now it’s closer to four. That’s a tangible win for us.
+
+Kfund: What about onboarding — how did that process go?
+
+Customer: Smooth for the most part. Took about two weeks. We did have some hiccups connecting to one of our smaller banks, but Embat’s team pushed the integration live within a month.
+
+Kfund: Looking forward, what would make you increase your usage of Embat?
+
+Customer: Deeper forecasting and payment execution. Right now, we’re still using our old system for FX settlements. If Embat adds that, we’d happily consolidate everything into their platform.
+
+Kfund: Do you have any concerns about their ability to scale with you?
+
+Customer: [pauses] Slightly. We’re growing fast, and we want to be sure Embat can handle the volume. So far, no major issues, but I’ve seen other SaaS vendors struggle when clients get bigger.
+
+Kfund: Would you say Embat is delivering on what was promised when you signed?
+
+Customer: Yes, mostly. They sometimes announce features as “coming soon” and it takes longer than expected. But the core product works as advertised.
+
+Kfund: Final question — would you renew your contract today?
+
+Customer: Absolutely. It’s become an essential tool for us.
