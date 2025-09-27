@@ -68,7 +68,7 @@ By default, the project will run in the port 8000.
 👤 **Giacomo**
 
 - GitHub: [GiacomoBCN](https://github.com/GiacomoBCN)
-- Twitter: [@](https://twitter.com/)
+- Web: [@](https://giacomobianchi.tech/)
 - LinkedIn: [@](https://www.linkedin.com/in/)
 
 
