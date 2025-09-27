@@ -8,7 +8,7 @@ type ResolvedComponent = {
   layout?: (page: ReactNode) => ReactNode
 }
 
-createInertiaApp({
+createInertiaApp({ 
   // Set default page title
   // see https://inertia-rails.dev/guide/title-and-meta
   //

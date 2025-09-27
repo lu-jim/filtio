@@ -1,5 +1,5 @@
 class CompaniesController < ApplicationController
-  before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :set_company, only: [ :show, :edit, :update, :destroy ]
 
   def index
     @companies = Company.includes(:founders).all
@@ -16,11 +16,11 @@ class CompaniesController < ApplicationController
 
   def create
     @company = Company.new(company_params)
-    
+
     if @company.save
-      redirect_to @company, notice: 'Company was successfully created.'
+      redirect_to @company, notice: "Company was successfully created."
     else
-      render inertia: 'companies/new', props: { company: @company }, status: :unprocessable_entity
+      render inertia: "companies/new", props: { company: @company }, status: :unprocessable_entity
     end
   end
 
@@ -29,15 +29,15 @@ class CompaniesController < ApplicationController
 
   def update
     if @company.update(company_params)
-      redirect_to @company, notice: 'Company was successfully updated.'
+      redirect_to @company, notice: "Company was successfully updated."
     else
-      render inertia: 'companies/edit', props: { company: @company }, status: :unprocessable_entity
+      render inertia: "companies/edit", props: { company: @company }, status: :unprocessable_entity
     end
   end
 
   def destroy
     @company.destroy
-    redirect_to companies_path, notice: 'Company was successfully deleted.'
+    redirect_to companies_path, notice: "Company was successfully deleted."
   end
 
   private
@@ -47,6 +47,6 @@ class CompaniesController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:name, :website, founders_attributes: [:id, :name, :linkedin, :_destroy])
+    params.require(:company).permit(:name, :website, founders_attributes: [ :id, :name, :linkedin, :_destroy ])
   end
 end

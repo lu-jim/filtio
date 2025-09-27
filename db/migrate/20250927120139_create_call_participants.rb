@@ -6,7 +6,7 @@ class CreateCallParticipants < ActiveRecord::Migration[8.0]
 
       t.timestamps
     end
-    
-    add_index :call_participants, [:call_id, :participant_id], unique: true
+
+    add_index :call_participants, [ :call_id, :participant_id ], unique: true
   end
 end
