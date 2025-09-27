@@ -2,7 +2,8 @@
   "private": true,
   "type": "module",
   "devDependencies": {
-    "vite": "^7.1.7",
+    "@types/bun": "^1.2.22",
+    "vite": "^5.4.20",
     "vite-plugin-ruby": "^5.1.1"
   },
   "dependencies": {
@@ -12,7 +13,7 @@
     "@tailwindcss/vite": "^4.1.13",
     "@types/react": "^19.1.14",
     "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^5.0.3",
+    "@vitejs/plugin-react": "^5.0.4",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "tailwindcss": "^4.1.13",
