@@ -1,0 +1,103 @@
+<div class="container mx-auto px-4 py-8">
+  <div class="max-w-4xl mx-auto">
+    <!-- Header -->
+    <div class="flex justify-between items-start mb-8">
+      <div>
+        <h1 class="text-4xl font-bold text-gray-900 mb-2"><%= @company.name %></h1>
+        <% if @company.website.present? %>
+          <p class="text-lg text-gray-600">
+            🌐 <a href="<%= @company.website %>" target="_blank" class="text-blue-600 hover:underline"><%= @company.website %></a>
+          </p>
+        <% end %>
+      </div>
+      <div class="flex space-x-3">
+        <%= link_to 'Edit Company', edit_company_path(@company), class: 'bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200' %>
+        <%= link_to 'Back to Companies', companies_path, class: 'bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200' %>
+      </div>
+    </div>
+
+    <!-- Company Details Card -->
+    <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Company Info -->
+        <div>
+          <h2 class="text-2xl font-semibold text-gray-900 mb-4">Company Information</h2>
+          <div class="space-y-3">
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Company Name</label>
+              <p class="text-lg text-gray-900"><%= @company.name %></p>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Website</label>
+              <% if @company.website.present? %>
+                <p class="text-lg">
+                  <a href="<%= @company.website %>" target="_blank" class="text-blue-600 hover:underline">
+                    <%= @company.website %>
+                  </a>
+                </p>
+              <% else %>
+                <p class="text-gray-500">Not provided</p>
+              <% end %>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-gray-700">Added to Portfolio</label>
+              <p class="text-lg text-gray-900"><%= @company.created_at.strftime("%B %d, %Y") %></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Founders Section -->
+        <div>
+          <div class="flex justify-between items-center mb-4">
+            <h2 class="text-2xl font-semibold text-gray-900">Founders</h2>
+            <%= link_to 'Add Founder', new_company_founder_path(@company), class: 'text-blue-600 hover:text-blue-800 font-medium' %>
+          </div>
+          
+          <% if @company.founders.any? %>
+            <div class="space-y-4">
+              <% @company.founders.each do |founder| %>
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                  <div class="flex justify-between items-start">
+                    <div class="flex-1">
+                      <h3 class="font-semibold text-gray-900 mb-1"><%= founder.name %></h3>
+                      <% if founder.linkedin.present? %>
+                        <p class="text-sm text-gray-600">
+                          <a href="<%= founder.linkedin %>" target="_blank" class="text-blue-600 hover:underline inline-flex items-center">
+                            LinkedIn Profile
+                            <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                          </a>
+                        </p>
+                      <% end %>
+                    </div>
+                    <div class="flex space-x-2 ml-4">
+                      <%= link_to 'Edit', edit_company_founder_path(@company, founder), class: 'text-green-600 hover:text-green-800 text-sm' %>
+                      <%= link_to 'Remove', company_founder_path(@company, founder), method: :delete, 
+                                  confirm: 'Are you sure?', 
+                                  class: 'text-red-600 hover:text-red-800 text-sm' %>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="text-center py-8 bg-gray-50 rounded-lg border border-gray-200">
+              <div class="text-4xl mb-3">👥</div>
+              <p class="text-gray-600 mb-4">No founders added yet</p>
+              <%= link_to 'Add First Founder', new_company_founder_path(@company), class: 'bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="flex justify-center space-x-4">
+      <%= link_to 'Edit Company', edit_company_path(@company), class: 'bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200' %>
+      <%= link_to 'Delete Company', @company, method: :delete, 
+                  confirm: 'Are you sure? This will also delete all founders.', 
+                  class: 'bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200' %>
+    </div>
+  </div>
+</div>
