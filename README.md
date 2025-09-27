@@ -38,7 +38,7 @@ To get a local copy up and running follow these simple steps.
 ### Install
 - Open your console and change the current working directory into the destination for this project.
 - Type `git clone`, and then paste the URL copied in the Setup section.
-- Type Enter and then enter `cd book-tesla` to enter into the project directory.
+- Type Enter and then enter `cd filtio` to enter into the project directory.
 - Run `bundler install` to install the required dependencies
 
 ## Run
@@ -56,7 +56,6 @@ By default, the project will run in the port 8000.
 
 ### Project
 
-- Link to the [Kanban board](https://github.com/lu-jim/book-tesla/projects/1)
 
 ## Authors
 
