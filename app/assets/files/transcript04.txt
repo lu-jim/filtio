@@ -1,0 +1,29 @@
+Transcript – Customer #1
+
+Kfund: Thanks for taking the time. Could you tell us how you’re using Embat today?
+
+Customer: Sure. We use it mainly for cash visibility and bank reconciliation. It saves our finance team a few hours every week compared to Excel.
+
+Kfund: That sounds like a solid improvement. How smooth was the onboarding process for your team?
+
+Customer: [hesitates] It was… good overall, though not as instant as “plug and play.” It took closer to three weeks to get everything configured because our ERP integration needed some customization. Their support team was very responsive, though.
+
+Kfund: Understood. How do your finance team members feel about the product day to day?
+
+Customer: They like the dashboards, especially the real-time view. Some of the forecasting features are still a bit rough, so we rely on our own models in parallel. But overall, adoption is strong.
+
+Kfund: If you had to highlight one thing Embat does better than alternatives, what would it be?
+
+Customer: The user interface. Compared to legacy systems, it’s much cleaner. Even our non-finance managers can interpret the charts.
+
+Kfund: And what’s one thing you think they could improve?
+
+Customer: [laughs] Pricing. It’s fair for us now, but if they add more modules, I’m worried costs will scale up quickly. Also, we’d like to see more native integrations — we still have to export CSVs for a few banks.
+
+Kfund: That’s helpful. Do you see Embat as mission-critical for your operations?
+
+Customer: I’d say yes, increasingly so. Once you centralize cash flows here, switching back would be painful. That said, we still keep some processes outside the tool, just in case.
+
+Kfund: Last question: would you recommend Embat to another CFO?
+
+Customer: Yes, with caveats. It’s a great solution, but I’d advise them to budget time for setup and to check carefully which integrations are ready versus “on the roadmap.”

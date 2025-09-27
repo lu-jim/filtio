@@ -1,0 +1,33 @@
+Transcript – Founder #2
+
+Kfund: Thanks for joining. Could you share your perspective on what makes Embat unique?
+
+Founder: Sure. We’re not just another treasury tool — we’re building the financial operating system for mid-market companies. Our vision is to be the layer CFOs rely on daily, not just once a month for reporting.
+
+Kfund: That’s a big ambition. How close do you think you are to that vision today?
+
+Founder: Honestly, closer than most people think. We already have modules that cover cash visibility, liquidity forecasting, and bank connectivity. The next step is embedding payments and FX, which customers are asking for.
+
+Kfund: You mentioned customers are requesting these features. How do you decide which to prioritize?
+
+Founder: We run structured customer councils quarterly, where CFOs vote on priorities. But we’re also proactive — sometimes we push features they didn’t know they needed. For example, our “scenario planning” tool came from our product team, and now it’s one of our stickiest features.
+
+Kfund: Let’s talk about the team. How would you describe your leadership style compared to your co-founders?
+
+Founder: I’m more of the connector — I bridge finance and tech. My co-founder is very strong on sales, while our CTO is purely technical. We complement each other well. That said, I tend to be the one who insists we move faster.
+
+Kfund: Have there been challenges in balancing speed with product stability?
+
+Founder: Naturally, yes. Early on we shipped quickly and had to re-architect some modules. But now we’ve established a much stronger engineering culture. I wouldn’t say it slowed us down — if anything, it forced us to learn fast.
+
+Kfund: Let’s dig into the competitive landscape. Who do you see as your main rivals?
+
+Founder: Legacy treasury systems like Kyriba or TMS. They’re built for enterprises, so they’re too heavy for mid-market. The real competition is CFOs sticking with Excel — and that’s where we win, because we’re intuitive.
+
+Kfund: Some potential customers tell us switching from Excel is actually harder than expected. What’s your take?
+
+Founder: [pauses] Well, change management is always a challenge, but we’ve simplified onboarding to the point where it’s mostly a mindset issue. Once they experience the dashboards, they don’t want to go back.
+
+Kfund: Finally, as you scale, where do you see the biggest execution risks?
+
+Founder: Talent density. We’re competing with top tech firms for engineers and salespeople. That’s why we’re raising this round — to make sure we can attract the best before our competitors do.

@@ -1,0 +1,29 @@
+Transcript – Potential Customer #1
+
+Kfund: Thanks for joining. Could you tell us which system you’re currently using for treasury?
+
+Potential Customer: We’re on Kyriba. It’s a bit heavy, but it does the job for our multinational setup.
+
+Kfund: Have you looked into Embat at all?
+
+Potential Customer: Yes, we’ve had a demo. I liked the interface — it’s cleaner and more modern. But honestly, I’m not sure it’s mature enough for our complexity.
+
+Kfund: What gave you that impression?
+
+Potential Customer: During the demo, some of the forecasting features seemed simplified. Also, when I asked about specific integrations with smaller banks in Eastern Europe, they said it was “on the roadmap.” That’s a red flag for us — we can’t run treasury on promises.
+
+Kfund: Understood. How do you evaluate switching providers generally?
+
+Potential Customer: We’d need a clear ROI. For us, switching costs are high — retraining staff, redoing workflows. So a challenger like Embat has to be at least twice as good to justify the move.
+
+Kfund: What would make you seriously consider switching?
+
+Potential Customer: If they could show they handle multinational treasury at scale — multi-currency, multi-entity, regulatory compliance. Right now, I think they’re better suited for mid-market firms in one geography.
+
+Kfund: Do you think their positioning in the market makes sense?
+
+Potential Customer: Yes, targeting mid-sized companies is smart. But they shouldn’t overstate their readiness for larger enterprises. That could backfire.
+
+Kfund: Final question — what was your overall impression of the team when you met them?
+
+Potential Customer: Energetic and visionary, but maybe a bit too optimistic. I felt they were glossing over the gaps.

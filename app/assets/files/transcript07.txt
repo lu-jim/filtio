@@ -1,0 +1,29 @@
+Transcript – Potential Customer #2
+
+Kfund: Thanks for taking the call. Could you tell us what tools you’re using for treasury management today?
+
+Potential Customer: We mostly rely on Excel, with some automations layered in. And for bank connections, we’ve been testing Agicap, which is lighter weight.
+
+Kfund: Have you evaluated Embat yet?
+
+Potential Customer: Yes, I had a sales call with them. Honestly, the product looks nice. But we didn’t feel the value gap over what we already use was big enough.
+
+Kfund: Could you elaborate on that?
+
+Potential Customer: Sure. Their dashboards look good, but setting them up still requires work. For a company our size, the time saved versus Excel didn’t feel like a game-changer. Plus, their pricing seemed higher than Agicap’s.
+
+Kfund: Did you see any advantages compared to your current setup?
+
+Potential Customer: Some, yes. Their reconciliation features seemed stronger. But forecasting felt similar to what we’re already doing. And the bank coverage was okay, but not much better than what we have.
+
+Kfund: What would convince you to switch?
+
+Potential Customer: If they could prove faster ROI — like cutting our workload in half, not just 20–30%. Or if they built a module that automated FX, which is where Excel really becomes a pain for us.
+
+Kfund: Do you think their pitch as a “plug-and-play” tool matches reality?
+
+Potential Customer: [laughs] I doubt it. No treasury tool is plug-and-play. From what I’ve heard from peers, it takes a few weeks at best. That’s fine — but they should set expectations better.
+
+Kfund: Final thought — what was your impression of the team?
+
+Potential Customer: Smart and driven, but they came across as very focused on growth. I didn’t feel they fully understood the smaller customer’s cost sensitivity.
