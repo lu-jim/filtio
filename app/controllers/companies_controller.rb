@@ -6,6 +6,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
+    @calls = @company.calls.includes(:participants).by_date.reverse_order
   end
 
   def new
