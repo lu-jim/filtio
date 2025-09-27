@@ -20,7 +20,7 @@ class CompaniesController < ApplicationController
     if @company.save
       redirect_to @company, notice: 'Company was successfully created.'
     else
-      render :new, status: :unprocessable_entity
+      render inertia: 'companies/new', props: { company: @company }, status: :unprocessable_entity
     end
   end
 
@@ -31,7 +31,7 @@ class CompaniesController < ApplicationController
     if @company.update(company_params)
       redirect_to @company, notice: 'Company was successfully updated.'
     else
-      render :edit, status: :unprocessable_entity
+      render inertia: 'companies/edit', props: { company: @company }, status: :unprocessable_entity
     end
   end
 

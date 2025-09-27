@@ -25,7 +25,7 @@ class CallsController < ApplicationController
       redirect_to @company, notice: 'Call was successfully created.'
     else
       @participants = Participant.by_name
-      render :new, status: :unprocessable_entity
+      render inertia: 'calls/new', props: { company: @company, call: @call, participants: @participants }, status: :unprocessable_entity
     end
   end
 
@@ -50,7 +50,7 @@ class CallsController < ApplicationController
       redirect_to @company, notice: 'Call was successfully updated.'
     else
       @participants = Participant.by_name
-      render :edit, status: :unprocessable_entity
+      render inertia: 'calls/edit', props: { company: @company, call: @call, participants: @participants }, status: :unprocessable_entity
     end
   end
 
