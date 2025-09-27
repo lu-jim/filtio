@@ -10,11 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_27_074441) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_27_075326) do
+  create_table "agents", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "founders", force: :cascade do |t|
+    t.string "name"
+    t.string "linkedin"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "company_id", null: false
+    t.index ["company_id"], name: "index_founders_on_company_id"
+  end
+
+  add_foreign_key "founders", "companies"
 end
