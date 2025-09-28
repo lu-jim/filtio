@@ -67,3 +67,5 @@ end
 gem "tailwindcss-rails", "~> 4.3"
 
 gem "vite_rails", "~> 3.0"
+
+gem "ruby_llm", "~> 1.8"
