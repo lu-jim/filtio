@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import { Link } from '@inertiajs/react'
+import { ThemeToggle } from '../../components/ThemeToggle'
 
 // TypeScript interfaces for the data structure
 interface Company {
@@ -55,79 +56,88 @@ export default function CallsShow({ company, call }: Props) {
   const sortedParticipants = [...call.participants].sort((a, b) => a.name.localeCompare(b.name))
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border px-8 py-6" role="banner">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-semibold text-foreground">Filt.io</h1>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link
+              href={`/companies/${company.id}/calls/${call.id}/edit`}
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
+            >
+              Edit Call
+            </Link>
+            <Link
+              href={`/companies/${company.id}`}
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
+            >
+              Back to Company
+            </Link>
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-4 py-8" role="main">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
-          <div className="flex justify-between items-start mb-8">
-            <div>
-              <h1 className="text-3xl font-bold text-gray-900 mb-2">Call Details</h1>
-              <p className="text-gray-600">
-                {company.name} - {formatDate(call.call_date)} at {formatTime(call.call_time)}
-              </p>
-            </div>
-            <div className="flex space-x-3">
-              <Link
-                href={`/companies/${company.id}/calls/${call.id}/edit`}
-                className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-              >
-                Edit Call
-              </Link>
-              <Link
-                href={`/companies/${company.id}`}
-                className="bg-gray-600 hover:bg-gray-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-              >
-                Back to Company
-              </Link>
-            </div>
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-foreground mb-2">Call Details</h1>
+            <p className="text-muted-foreground">
+              {company.name} - {formatDate(call.call_date)} at {formatTime(call.call_time)}
+            </p>
           </div>
 
           {/* Call Details Card */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
+          <div className="bg-card rounded-lg shadow-lg p-8 mb-8 border border-border">
             <div className="grid md:grid-cols-2 gap-8 mb-8">
               {/* Call Info */}
               <div>
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Call Information</h2>
+                <h2 className="text-xl font-semibold text-card-foreground mb-4">Call Information</h2>
                 <div className="space-y-3">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Date</label>
-                    <p className="text-lg text-gray-900">{formatDate(call.call_date)}</p>
+                    <label className="block text-sm font-medium text-card-foreground">Date</label>
+                    <p className="text-lg text-card-foreground">{formatDate(call.call_date)}</p>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700">Time</label>
-                    <p className="text-lg text-gray-900">{formatTime(call.call_time)}</p>
+                    <label className="block text-sm font-medium text-card-foreground">Time</label>
+                    <p className="text-lg text-card-foreground">{formatTime(call.call_time)}</p>
                   </div>
                 </div>
               </div>
 
               {/* Participants */}
               <div>
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Participants</h2>
+                <h2 className="text-xl font-semibold text-card-foreground mb-4">Participants</h2>
                 {call.participants.length > 0 ? (
                   <div className="space-y-2">
                     {sortedParticipants.map((participant) => (
                       <div key={participant.id} className="flex items-center">
-                        <div className="w-2 h-2 bg-blue-600 rounded-full mr-3"></div>
-                        <span className="text-gray-900">{participant.name}</span>
+                        <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
+                        <span className="text-card-foreground">{participant.name}</span>
                       </div>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-500">No participants recorded</p>
+                  <p className="text-muted-foreground">No participants recorded</p>
                 )}
               </div>
             </div>
 
             {/* Transcript */}
             <div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Transcript</h2>
-              <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+              <h2 className="text-xl font-semibold text-card-foreground mb-4">Transcript</h2>
+              <div className="bg-muted rounded-lg p-6 border border-border">
                 {call.transcript_file ? (
-                  <div className="prose prose-gray max-w-none">
+                  <div className="prose prose-gray max-w-none text-card-foreground">
                     {formatTranscript(call.transcript_file)}
                   </div>
                 ) : (
-                  <p className="text-gray-500 text-center py-8">No transcript available</p>
+                  <p className="text-muted-foreground text-center py-8">No transcript available</p>
                 )}
               </div>
             </div>
@@ -137,7 +147,7 @@ export default function CallsShow({ company, call }: Props) {
           <div className="flex justify-center space-x-4">
             <Link
               href={`/companies/${company.id}/calls/${call.id}/edit`}
-              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 px-6 rounded-lg transition duration-200"
             >
               Edit Call
             </Link>
@@ -145,13 +155,13 @@ export default function CallsShow({ company, call }: Props) {
               href={`/companies/${company.id}/calls/${call.id}`}
               method="delete"
               data={{ confirm: 'Are you sure? This will permanently delete the call and transcript.' }}
-              className="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
+              className="bg-destructive hover:bg-destructive/90 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
             >
               Delete Call
             </Link>
           </div>
         </div>
-      </div>
-    </Layout>
+      </main>
+    </div>
   )
 }

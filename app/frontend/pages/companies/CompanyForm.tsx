@@ -76,18 +76,18 @@ export default function CompanyForm({ company }: Props) {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {hasErrors && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+        <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-4 mb-6">
           <div className="flex">
             <div className="flex-shrink-0">
-              <svg className="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+              <svg className="h-5 w-5 text-destructive" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-red-800">
+              <h3 className="text-sm font-medium text-destructive">
                 {Object.keys(errors).length} error{Object.keys(errors).length !== 1 ? 's' : ''} prohibited this company from being saved:
               </h3>
-              <div className="mt-2 text-sm text-red-700">
+              <div className="mt-2 text-sm text-destructive/80">
                 <ul className="list-disc pl-5 space-y-1">
                   {Object.values(errors).map((error, index) => (
                     <li key={index}>{error}</li>
@@ -100,12 +100,12 @@ export default function CompanyForm({ company }: Props) {
       )}
 
       {/* Company Information */}
-      <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-4">Company Information</h2>
+      <div className="bg-card rounded-lg shadow-md p-6 border border-border">
+        <h2 className="text-xl font-semibold text-card-foreground mb-4">Company Information</h2>
         
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="name" className="block text-sm font-medium text-card-foreground mb-2">
               Name *
             </label>
             <input
@@ -113,12 +113,12 @@ export default function CompanyForm({ company }: Props) {
               id="name"
               value={data.name}
               onChange={(e) => setData('name', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground"
             />
           </div>
 
           <div>
-            <label htmlFor="website" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="website" className="block text-sm font-medium text-card-foreground mb-2">
               Website
             </label>
             <input
@@ -127,12 +127,12 @@ export default function CompanyForm({ company }: Props) {
               value={data.website}
               onChange={(e) => setData('website', e.target.value)}
               placeholder="https://example.com"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground"
             />
           </div>
 
           <div>
-            <label htmlFor="logo" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="logo" className="block text-sm font-medium text-card-foreground mb-2">
               Logo URL
             </label>
             <input
@@ -141,12 +141,12 @@ export default function CompanyForm({ company }: Props) {
               value={data.logo}
               onChange={(e) => setData('logo', e.target.value)}
               placeholder="https://example.com/logo.png"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground"
             />
           </div>
 
           <div>
-            <label htmlFor="tagline" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="tagline" className="block text-sm font-medium text-card-foreground mb-2">
               Tagline
             </label>
             <input
@@ -155,12 +155,12 @@ export default function CompanyForm({ company }: Props) {
               value={data.tagline}
               onChange={(e) => setData('tagline', e.target.value)}
               placeholder="Your company's tagline"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground"
             />
           </div>
 
           <div>
-            <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="year" className="block text-sm font-medium text-card-foreground mb-2">
               Founded Year *
             </label>
             <input
@@ -171,19 +171,19 @@ export default function CompanyForm({ company }: Props) {
               placeholder="2020"
               min="1800"
               max={new Date().getFullYear()}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground"
             />
           </div>
 
           <div>
-            <label htmlFor="size" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="size" className="block text-sm font-medium text-card-foreground mb-2">
               Company Size
             </label>
             <select
               id="size"
               value={data.size}
               onChange={(e) => setData('size', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground"
             >
               <option value="">Select company size</option>
               <option value="0-10">0-10 employees</option>
@@ -196,13 +196,13 @@ export default function CompanyForm({ company }: Props) {
       </div>
 
       {/* Founders Section */}
-      <div className="bg-white rounded-lg shadow-md p-6">
+      <div className="bg-card rounded-lg shadow-md p-6 border border-border">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-semibold text-gray-900">Founders</h2>
+          <h2 className="text-xl font-semibold text-card-foreground">Founders</h2>
           <button
             type="button"
             onClick={addFounder}
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
           >
             Add Founder
           </button>
@@ -211,13 +211,13 @@ export default function CompanyForm({ company }: Props) {
         <div className="space-y-4">
           {data.founders_attributes.map((founder, index) => (
             !founder._destroy && (
-              <div key={index} className="founder-fields bg-gray-50 rounded-lg p-4 border border-gray-200">
+              <div key={index} className="founder-fields bg-muted rounded-lg p-4 border border-border">
                 <div className="flex justify-between items-start mb-4">
-                  <h3 className="text-lg font-medium text-gray-900">Founder Details</h3>
+                  <h3 className="text-lg font-medium text-card-foreground">Founder Details</h3>
                   <button
                     type="button"
                     onClick={() => removeFounder(index)}
-                    className="text-red-600 hover:text-red-800 font-medium"
+                    className="text-destructive hover:text-destructive/80 font-medium"
                   >
                     Remove
                   </button>
@@ -225,7 +225,7 @@ export default function CompanyForm({ company }: Props) {
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor={`founder_name_${index}`} className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor={`founder_name_${index}`} className="block text-sm font-medium text-card-foreground mb-2">
                       Name
                     </label>
                     <input
@@ -233,12 +233,12 @@ export default function CompanyForm({ company }: Props) {
                       id={`founder_name_${index}`}
                       value={founder.name}
                       onChange={(e) => updateFounder(index, 'name', e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground"
                     />
                   </div>
 
                   <div>
-                    <label htmlFor={`founder_linkedin_${index}`} className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor={`founder_linkedin_${index}`} className="block text-sm font-medium text-card-foreground mb-2">
                       LinkedIn
                     </label>
                     <input
@@ -247,7 +247,7 @@ export default function CompanyForm({ company }: Props) {
                       value={founder.linkedin || ''}
                       onChange={(e) => updateFounder(index, 'linkedin', e.target.value)}
                       placeholder="https://linkedin.com/in/username"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      className="w-full px-3 py-2 border border-input rounded-lg focus:outline-none focus:ring-2 focus:ring-ring bg-background text-foreground"
                     />
                   </div>
                 </div>
@@ -261,14 +261,14 @@ export default function CompanyForm({ company }: Props) {
       <div className="flex justify-end space-x-4 pt-6">
         <Link
           href="/companies"
-          className="bg-gray-600 hover:bg-gray-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
+          className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium py-3 px-6 rounded-lg transition duration-200"
         >
           Cancel
         </Link>
         <button
           type="submit"
           disabled={processing}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200 disabled:opacity-50"
+          className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 px-6 rounded-lg transition duration-200 disabled:opacity-50"
         >
           {processing ? 'Saving...' : (company.id ? 'Update Company' : 'Create Company')}
         </button>

@@ -1,6 +1,8 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import CallForm from './CallForm'
+import { ThemeToggle } from '../../components/ThemeToggle'
+import { Link } from '@inertiajs/react'
 
 // TypeScript interfaces for the data structure
 interface Company {
@@ -37,23 +39,42 @@ export default function CallsEdit({ company, call, participants }: Props) {
   }
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border px-8 py-6" role="banner">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-semibold text-foreground">Filt.io</h1>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link
+              href={`/companies/${company.id}`}
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
+            >
+              Back to Company
+            </Link>
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-4 py-8" role="main">
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Edit Call for {company.name}</h1>
-            <p className="text-gray-600">
+            <h1 className="text-3xl font-bold text-foreground mb-2">Edit Call for {company.name}</h1>
+            <p className="text-muted-foreground">
               Update call details and transcript from {call.call_date && formatDate(call.call_date)}
             </p>
           </div>
 
           {/* Form Card */}
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className="bg-card rounded-lg shadow-lg p-8 border border-border">
             <CallForm company={company} call={call} participants={participants} />
           </div>
         </div>
-      </div>
-    </Layout>
+      </main>
+    </div>
   )
 }

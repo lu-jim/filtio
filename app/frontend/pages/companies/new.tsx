@@ -1,6 +1,8 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import CompanyForm from './CompanyForm'
+import { ThemeToggle } from '../../components/ThemeToggle'
+import { Link } from '@inertiajs/react'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -27,17 +29,36 @@ interface Props {
 
 export default function CompaniesNew({ company }: Props) {
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border px-8 py-6" role="banner">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-semibold text-foreground">Filt.io</h1>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/companies"
+              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
+            >
+              Back to Companies
+            </Link>
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-4 py-8" role="main">
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">Add New Company</h1>
-            <p className="text-gray-600">Add a new company to your portfolio with founder information.</p>
+            <h1 className="text-3xl font-bold text-foreground mb-2">Add New Company</h1>
+            <p className="text-muted-foreground">Add a new company to your portfolio with founder information.</p>
           </div>
 
           <CompanyForm company={company} />
         </div>
-      </div>
-    </Layout>
+      </main>
+    </div>
   )
 }

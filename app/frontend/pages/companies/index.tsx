@@ -1,6 +1,7 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import { Link } from '@inertiajs/react'
+import { ThemeToggle } from '../../components/ThemeToggle'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -26,24 +27,36 @@ interface Props {
 
 export default function CompaniesIndex({ companies }: Props) {
   return (
-    <Layout>
-      React version
-      <div className="container mx-auto px-4 py-8 w-full">
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border px-8 py-6" role="banner">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-semibold text-foreground">Filt.io</h1>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/companies/new"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
+            >
+              Add New Company
+            </Link>
+            <ThemeToggle />
+          </div>
+        </div>
+      </header>
+
+      <main className="container mx-auto px-4 py-8 w-full" role="main">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Portfolio Companies</h1>
-          <Link
-            href="/companies/new"
-            className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-          >
-            Add New Company
-          </Link>
+          <h1 className="text-3xl font-bold text-foreground">Portfolio Companies</h1>
         </div>
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {companies.map((company) => (
             <div
               key={company.id}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-200 p-6 border border-gray-200"
+              className="bg-card rounded-lg shadow-md hover:shadow-lg transition duration-200 p-6 border border-border"
             >
               <div className="flex justify-between items-start mb-4">
                 <div className="flex items-start space-x-3">
@@ -55,18 +68,18 @@ export default function CompaniesIndex({ companies }: Props) {
                     />
                   )}
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-900 mb-1">
+                    <h2 className="text-xl font-semibold text-card-foreground mb-1">
                       {company.name}
                     </h2>
                     {company.tagline && (
-                      <p className="text-gray-600 text-sm mb-2">{company.tagline}</p>
+                      <p className="text-muted-foreground text-sm mb-2">{company.tagline}</p>
                     )}
-                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                    <div className="flex items-center space-x-4 text-sm text-muted-foreground">
                       {company.year && (
                         <span>Founded {company.year}</span>
                       )}
                       {company.size && (
-                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                        <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs">
                           {company.size} employees
                         </span>
                       )}
@@ -76,13 +89,13 @@ export default function CompaniesIndex({ companies }: Props) {
                 <div className="flex space-x-2">
                   <Link
                     href={`/companies/${company.id}`}
-                    className="text-blue-600 hover:text-blue-800 text-sm"
+                    className="text-primary hover:text-primary/80 text-sm"
                   >
                     View
                   </Link>
                   <Link
                     href={`/companies/${company.id}/edit`}
-                    className="text-green-600 hover:text-green-800 text-sm"
+                    className="text-chart-2 hover:text-chart-2/80 text-sm"
                   >
                     Edit
                   </Link>
@@ -90,7 +103,7 @@ export default function CompaniesIndex({ companies }: Props) {
                     href={`/companies/${company.id}`}
                     method="delete"
                     data={{ confirm: 'Are you sure?' }}
-                    className="text-red-600 hover:text-red-800 text-sm"
+                    className="text-destructive hover:text-destructive/80 text-sm"
                   >
                     Delete
                   </Link>
@@ -98,14 +111,14 @@ export default function CompaniesIndex({ companies }: Props) {
               </div>
               
               {company.website && (
-                <p className="text-gray-600 mb-3">
+                <p className="text-muted-foreground mb-3">
                   <span className="inline-flex items-center">
                     🌐 
                     <a
                       href={company.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-1 text-blue-600 hover:underline"
+                      className="ml-1 text-primary hover:underline"
                     >
                       {company.website}
                     </a>
@@ -113,8 +126,8 @@ export default function CompaniesIndex({ companies }: Props) {
                 </p>
               )}
 
-              <div className="border-t pt-3">
-                <h3 className="text-sm font-medium text-gray-700 mb-2">Founders</h3>
+              <div className="border-t border-border pt-3">
+                <h3 className="text-sm font-medium text-card-foreground mb-2">Founders</h3>
                 {company.founders && company.founders.length > 0 ? (
                   <div className="space-y-1">
                     {company.founders.map((founder) => (
@@ -122,13 +135,13 @@ export default function CompaniesIndex({ companies }: Props) {
                         key={founder.id}
                         className="flex items-center justify-between text-sm"
                       >
-                        <span className="text-gray-900">{founder.name}</span>
+                        <span className="text-card-foreground">{founder.name}</span>
                         {founder.linkedin && (
                           <a
                             href={founder.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800"
+                            className="text-primary hover:text-primary/80"
                           >
                             LinkedIn
                           </a>
@@ -137,7 +150,7 @@ export default function CompaniesIndex({ companies }: Props) {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-gray-500 text-sm">No founders listed</p>
+                  <p className="text-muted-foreground text-sm">No founders listed</p>
                 )}
               </div>
             </div>
@@ -148,22 +161,22 @@ export default function CompaniesIndex({ companies }: Props) {
           <div className="text-center py-12">
             <div className="max-w-md mx-auto">
               <div className="text-6xl mb-4">🏢</div>
-              <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              <h2 className="text-2xl font-semibold text-foreground mb-2">
                 No companies yet
               </h2>
-              <p className="text-gray-600 mb-6">
+              <p className="text-muted-foreground mb-6">
                 Start building your portfolio by adding your first company.
               </p>
               <Link
                 href="/companies/new"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
+                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 px-6 rounded-lg transition duration-200"
               >
                 Add First Company
               </Link>
             </div>
           </div>
         )}
-      </div>
-    </Layout>
+      </main>
+    </div>
   )
 }
