@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_27_120139) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_28_095946) do
   create_table "agents", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -42,6 +42,11 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_27_120139) do
     t.string "website"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "logo"
+    t.string "tagline"
+    t.integer "year"
+    t.string "size"
+    t.check_constraint "size IN ('0-10', '50-100', '100-250', '+250')", name: "companies_size_check"
   end
 
   create_table "founders", force: :cascade do |t|

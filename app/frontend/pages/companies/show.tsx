@@ -26,6 +26,10 @@ interface Company {
   id: number
   name: string
   website?: string
+  logo?: string
+  tagline?: string
+  year?: number
+  size?: '0-10' | '50-100' | '100-250' | '+250'
   created_at: string
   founders?: Founder[]
 }
@@ -62,21 +66,43 @@ export default function CompaniesShow({ company, calls }: Props) {
         <div className="max-w-4xl mx-auto">
           {/* Header */}
           <div className="flex justify-between items-start mb-8">
-            <div>
-              <h1 className="text-4xl font-bold text-gray-900 mb-2">{company.name}</h1>
-              {company.website && (
-                <p className="text-lg text-gray-600">
-                  🌐{' '}
-                  <a
-                    href={company.website}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-blue-600 hover:underline"
-                  >
-                    {company.website}
-                  </a>
-                </p>
+            <div className="flex items-start space-x-4">
+              {company.logo && (
+                <img 
+                  src={company.logo} 
+                  alt={`${company.name} logo`}
+                  className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                />
               )}
+              <div>
+                <h1 className="text-4xl font-bold text-gray-900 mb-2">{company.name}</h1>
+                {company.tagline && (
+                  <p className="text-lg text-gray-600 mb-2 italic">"{company.tagline}"</p>
+                )}
+                <div className="flex items-center space-x-4 text-sm text-gray-500 mb-2">
+                  {company.year && (
+                    <span>Founded {company.year}</span>
+                  )}
+                  {company.size && (
+                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+                      {company.size} employees
+                    </span>
+                  )}
+                </div>
+                {company.website && (
+                  <p className="text-lg text-gray-600">
+                    🌐{' '}
+                    <a
+                      href={company.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      {company.website}
+                    </a>
+                  </p>
+                )}
+              </div>
             </div>
             <div className="flex space-x-3">
               <Link
@@ -104,6 +130,20 @@ export default function CompaniesShow({ company, calls }: Props) {
                   <div>
                     <label className="block text-sm font-medium text-gray-700">Company Name</label>
                     <p className="text-lg text-gray-900">{company.name}</p>
+                  </div>
+                  {company.tagline && (
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">Tagline</label>
+                      <p className="text-lg text-gray-900 italic">"{company.tagline}"</p>
+                    </div>
+                  )}
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Founded</label>
+                    <p className="text-lg text-gray-900">{company.year || 'Not specified'}</p>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700">Company Size</label>
+                    <p className="text-lg text-gray-900">{company.size ? `${company.size} employees` : 'Not specified'}</p>
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700">Website</label>

@@ -15,6 +15,10 @@ interface Company {
   id?: number
   name: string
   website?: string
+  logo?: string
+  tagline?: string
+  year?: number
+  size?: '0-10' | '50-100' | '100-250' | '+250'
   founders: Founder[]
 }
 

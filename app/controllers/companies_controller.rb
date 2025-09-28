@@ -29,6 +29,7 @@ class CompaniesController < ApplicationController
   end
 
   def edit
+    render inertia: "companies/edit", props: { company: @company }
   end
 
   def update
@@ -51,6 +52,6 @@ class CompaniesController < ApplicationController
   end
 
   def company_params
-    params.require(:company).permit(:name, :website, founders_attributes: [ :id, :name, :linkedin, :_destroy ])
+    params.require(:company).permit(:name, :website, :logo, :tagline, :year, :size, founders_attributes: [ :id, :name, :linkedin, :_destroy ])
   end
 end

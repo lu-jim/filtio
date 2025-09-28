@@ -13,6 +13,10 @@ interface Company {
   id?: number
   name: string
   website?: string
+  logo?: string
+  tagline?: string
+  year?: number
+  size?: '0-10' | '50-100' | '100-250' | '+250'
   founders: Founder[]
 }
 
@@ -24,6 +28,10 @@ export default function CompanyForm({ company }: Props) {
   const { data, setData, post, put, errors, processing } = useForm({
     name: company.name || '',
     website: company.website || '',
+    logo: company.logo || '',
+    tagline: company.tagline || '',
+    year: company.year || '',
+    size: company.size || '',
     founders_attributes: company.founders || []
   })
 
@@ -98,7 +106,7 @@ export default function CompanyForm({ company }: Props) {
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-              Name
+              Name *
             </label>
             <input
               type="text"
@@ -121,6 +129,68 @@ export default function CompanyForm({ company }: Props) {
               placeholder="https://example.com"
               className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             />
+          </div>
+
+          <div>
+            <label htmlFor="logo" className="block text-sm font-medium text-gray-700 mb-2">
+              Logo URL
+            </label>
+            <input
+              type="url"
+              id="logo"
+              value={data.logo}
+              onChange={(e) => setData('logo', e.target.value)}
+              placeholder="https://example.com/logo.png"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="tagline" className="block text-sm font-medium text-gray-700 mb-2">
+              Tagline
+            </label>
+            <input
+              type="text"
+              id="tagline"
+              value={data.tagline}
+              onChange={(e) => setData('tagline', e.target.value)}
+              placeholder="Your company's tagline"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="year" className="block text-sm font-medium text-gray-700 mb-2">
+              Founded Year *
+            </label>
+            <input
+              type="number"
+              id="year"
+              value={data.year}
+              onChange={(e) => setData('year', e.target.value ? parseInt(e.target.value) : '')}
+              placeholder="2020"
+              min="1800"
+              max={new Date().getFullYear()}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            />
+          </div>
+
+          <div>
+            <label htmlFor="size" className="block text-sm font-medium text-gray-700 mb-2">
+              Company Size
+            </label>
+            <select
+              id="size"
+              value={data.size}
+              onChange={(e) => setData('size', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+            >
+              <option value="">Select company size</option>
+              <option value="0-10">0-10 employees</option>
+              <option value="50-100">50-100 employees</option>
+              <option value="100-250">100-250 employees</option>
+              <option value="+250">+250 employees</option>
+            </select>
           </div>
         </div>
       </div>

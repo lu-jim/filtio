@@ -13,6 +13,10 @@ interface Company {
   id: number
   name: string
   website?: string
+  logo?: string
+  tagline?: string
+  year?: number
+  size?: '0-10' | '50-100' | '100-250' | '+250'
   founders?: Founder[]
 }
 
@@ -42,9 +46,33 @@ export default function CompaniesIndex({ companies }: Props) {
               className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-200 p-6 border border-gray-200"
             >
               <div className="flex justify-between items-start mb-4">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">
-                  {company.name}
-                </h2>
+                <div className="flex items-start space-x-3">
+                  {company.logo && (
+                    <img 
+                      src={company.logo} 
+                      alt={`${company.name} logo`}
+                      className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
+                    />
+                  )}
+                  <div>
+                    <h2 className="text-xl font-semibold text-gray-900 mb-1">
+                      {company.name}
+                    </h2>
+                    {company.tagline && (
+                      <p className="text-gray-600 text-sm mb-2">{company.tagline}</p>
+                    )}
+                    <div className="flex items-center space-x-4 text-sm text-gray-500">
+                      {company.year && (
+                        <span>Founded {company.year}</span>
+                      )}
+                      {company.size && (
+                        <span className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">
+                          {company.size} employees
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                </div>
                 <div className="flex space-x-2">
                   <Link
                     href={`/companies/${company.id}`}
