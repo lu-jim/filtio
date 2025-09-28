@@ -8,7 +8,7 @@ class CompaniesController < ApplicationController
   end
 
   def show
-    @calls = @company.calls.includes(:participants).by_date.reverse_order
+    @calls = @company.recent_calls.includes(:participants)
 
     render inertia: "companies/show", props: { company: @company, calls: @calls }
   end
