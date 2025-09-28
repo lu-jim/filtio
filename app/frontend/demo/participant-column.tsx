@@ -1,16 +1,40 @@
-"use client"
-
 import React, { useState } from "react"
 import { ChevronDown, ChevronRight, Clock, User } from "lucide-react"
-// Removed next/image import - using native img tag instead
 
-const startupData = {
-  id: "embat",
-  name: "Embat",
-  logo: "/images/embat-logo.jpg",
-  description: "Financial technology platform",
-  founded: "2019",
-  employees: "50-100",
+interface Founder {
+  id: number
+  name: string
+  linkedin?: string
+}
+
+interface Participant {
+  id: number
+  name: string
+}
+
+interface Call {
+  id: number
+  call_date: string
+  call_time: string
+  transcript_file?: string
+  participants?: Participant[]
+}
+
+interface Company {
+  id: number
+  name: string
+  website?: string
+  logo?: string
+  tagline?: string
+  year?: number
+  size?: '0-10' | '50-100' | '100-250' | '+250'
+  created_at: string
+  founders?: Founder[]
+}
+
+interface Props {
+  company: Company
+  calls?: Call[]
 }
 
 const participantData = {
@@ -85,7 +109,7 @@ const participantData = {
   ],
 }
 
-export function ParticipantColumn() {
+export function ParticipantColumn({ company, calls }: Props) {
   const [expandedCategories, setExpandedCategories] = useState<Set<string>>(new Set())
   const [expandedInterviews, setExpandedInterviews] = useState<Set<string>>(new Set())
 
@@ -107,6 +131,22 @@ export function ParticipantColumn() {
       newExpanded.add(interviewId)
     }
     setExpandedInterviews(newExpanded)
+  }
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
+  }
+
+  const formatTime = (timeString: string) => {
+    return new Date(`2000-01-01T${timeString}`).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    })
   }
 
   const renderParticipantCategory = (title: string, participants: any[], categoryKey: string) => (
@@ -141,15 +181,15 @@ export function ParticipantColumn() {
                   </div>
                   <div>
                     <h4 className="text-sm font-medium text-card-foreground">{participant.name}</h4>
-                    <p className="text-xs text-muted-foreground">{participant.title}</p>
+                    <p className="text-xs text-muted-foreground">{participant.title || 'Participant'}</p>
                   </div>
                 </div>
                 <div className="flex items-center space-x-3 text-muted-foreground">
                   <div className="flex items-center space-x-1">
                     <Clock className="h-3 w-3" />
-                    <span className="text-xs">{participant.duration}</span>
+                    <span className="text-xs">{participant.duration || 'N/A'}</span>
                   </div>
-                  <span className="text-xs">{participant.date}</span>
+                  <span className="text-xs">{participant.date || 'N/A'}</span>
                   {expandedInterviews.has(participant.id) ? (
                     <ChevronDown className="h-4 w-4" />
                   ) : (
@@ -161,7 +201,9 @@ export function ParticipantColumn() {
               {expandedInterviews.has(participant.id) && (
                 <div className="px-4 pb-4 pt-2 bg-secondary/30">
                   <p className="text-xs text-muted-foreground mb-2 font-medium">Transcript</p>
-                  <div className="text-sm text-secondary-foreground leading-relaxed">{participant.transcript}</div>
+                  <div className="text-sm text-secondary-foreground leading-relaxed">
+                    {participant.transcript || 'No transcript available'}
+                  </div>
                 </div>
               )}
             </div>
@@ -177,21 +219,31 @@ export function ParticipantColumn() {
         <div className="border border-border rounded-lg bg-card shadow-sm p-6">
           <div className="flex items-center space-x-4">
             <div className="relative w-16 h-16 rounded-lg overflow-hidden bg-secondary border border-border">
-              <img
-                src={startupData.logo || "/placeholder.svg"}
-                alt={`${startupData.name} logo`}
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
+              {company.logo ? (
+                <img
+                  src={company.logo}
+                  alt={`${company.name} logo`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div className="absolute inset-0 w-full h-full bg-muted flex items-center justify-center">
+                  <User className="h-8 w-8 text-muted-foreground" />
+                </div>
+              )}
             </div>
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-card-foreground">{startupData.name}</h3>
-              <p className="text-sm text-muted-foreground mt-1">{startupData.description}</p>
+              <h3 className="text-xl font-semibold text-card-foreground">{company.name}</h3>
+              <p className="text-sm text-muted-foreground mt-1">{company.tagline || 'Company'}</p>
               <div className="flex items-center space-x-4 mt-2 text-xs text-muted-foreground">
-                <span>Founded {startupData.founded}</span>
-                <span>•</span>
-                <span>{startupData.employees} employees</span>
+                {company.year && <span>Founded {company.year}</span>}
+                {company.size && (
+                  <>
+                    <span>•</span>
+                    <span>{company.size} employees</span>
+                  </>
+                )}
               </div>
             </div>
           </div>
@@ -200,9 +252,28 @@ export function ParticipantColumn() {
 
       <div>
         <div className="space-y-3">
-          {renderParticipantCategory("Founder", participantData.founders, "founders")}
-          {renderParticipantCategory("Customer", participantData.customers, "customers")}
-          {renderParticipantCategory("Expert", participantData.experts, "experts")}
+          {renderParticipantCategory("Founders", 
+            (company.founders || []).map(founder => ({
+              id: `founder-${founder.id}`,
+              name: founder.name,
+              title: 'Founder',
+              duration: 'N/A',
+              date: 'N/A',
+              transcript: 'Founder information available'
+            })), 
+            "founders"
+          )}
+          {renderParticipantCategory("Calls", 
+            (calls || []).map(call => ({
+              id: `call-${call.id}`,
+              name: `Call ${call.id}`,
+              title: `${formatDate(call.call_date)} at ${formatTime(call.call_time)}`,
+              duration: 'N/A',
+              date: formatDate(call.call_date),
+              transcript: call.transcript_file || 'No transcript available'
+            })), 
+            "calls"
+          )}
         </div>
       </div>
     </div>

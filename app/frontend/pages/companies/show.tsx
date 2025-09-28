@@ -1,6 +1,12 @@
 import React from 'react'
 import Layout from '../../components/Layout'
 import { Link } from '@inertiajs/react'
+// Temporarily comment out demo components to fix hooks issue
+// import { ParticipantColumn } from '../../demo/participant-column'
+// import { InsightsColumn } from '../../demo/insights-column'
+// import { SentimentColumn } from '../../demo/sentiment-column'
+import { Button } from '../../components/Button'
+import { Menu } from 'lucide-react'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -61,50 +67,15 @@ export default function CompaniesShow({ company, calls }: Props) {
   }
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="flex justify-between items-start mb-8">
-            <div className="flex items-start space-x-4">
-              {company.logo && (
-                <img 
-                  src={company.logo} 
-                  alt={`${company.name} logo`}
-                  className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
-                />
-              )}
-              <div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">{company.name}</h1>
-                {company.tagline && (
-                  <p className="text-lg text-gray-600 mb-2 italic">"{company.tagline}"</p>
-                )}
-                <div className="flex items-center space-x-4 text-sm text-gray-500 mb-2">
-                  {company.year && (
-                    <span>Founded {company.year}</span>
-                  )}
-                  {company.size && (
-                    <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
-                      {company.size} employees
-                    </span>
-                  )}
-                </div>
-                {company.website && (
-                  <p className="text-lg text-gray-600">
-                    🌐{' '}
-                    <a
-                      href={company.website}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-600 hover:underline"
-                    >
-                      {company.website}
-                    </a>
-                  </p>
-                )}
-              </div>
+    <div className="min-h-screen bg-background">
+      <header className="border-b border-border px-8 py-6" role="banner">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-semibold text-foreground">Filt.io</h1>
             </div>
-            <div className="flex space-x-3">
+          </div>
+          <div className="flex items-center gap-4">
               <Link
                 href={`/companies/${company.id}/edit`}
                 className="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
@@ -117,245 +88,160 @@ export default function CompaniesShow({ company, calls }: Props) {
               >
                 Back to Companies
               </Link>
-            </div>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="hover:bg-hover-overlay transition-colors duration-200"
+              aria-label="Open main menu"
+              aria-haspopup="menu"
+            >
+              <Menu className="h-5 w-5" aria-hidden="true" />
+            </Button>
           </div>
+        </div>
+      </header>
 
-          {/* Company Details Card */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Company Info */}
-              <div>
-                <h2 className="text-2xl font-semibold text-gray-900 mb-4">Company Information</h2>
-                <div className="space-y-3">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Company Name</label>
-                    <p className="text-lg text-gray-900">{company.name}</p>
-                  </div>
-                  {company.tagline && (
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700">Tagline</label>
-                      <p className="text-lg text-gray-900 italic">"{company.tagline}"</p>
-                    </div>
-                  )}
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Founded</label>
-                    <p className="text-lg text-gray-900">{company.year || 'Not specified'}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Company Size</label>
-                    <p className="text-lg text-gray-900">{company.size ? `${company.size} employees` : 'Not specified'}</p>
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Website</label>
-                    {company.website ? (
-                      <p className="text-lg">
-                        <a
-                          href={company.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-600 hover:underline"
-                        >
-                          {company.website}
-                        </a>
-                      </p>
-                    ) : (
-                      <p className="text-gray-500">Not provided</p>
-                    )}
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700">Added to Portfolio</label>
-                    <p className="text-lg text-gray-900">{formatDate(company.created_at)}</p>
-                  </div>
+      <main className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8" role="main">
+        <section className="lg:col-span-1" aria-labelledby="participants-heading">
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Participants</h2>
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                {company.logo && (
+                  <img 
+                    src={company.logo} 
+                    alt={`${company.name} logo`}
+                    className="w-12 h-12 rounded-lg object-cover"
+                  />
+                )}
+                <div>
+                  <h3 className="font-semibold text-gray-900">{company.name}</h3>
+                  <p className="text-sm text-gray-600">{company.tagline || 'Company'}</p>
                 </div>
               </div>
-
-              {/* Founders Section */}
-              <div>
-                <div className="flex justify-between items-center mb-4">
-                  <h2 className="text-2xl font-semibold text-gray-900">Founders</h2>
-                  <Link
-                    href={`/companies/${company.id}/founders/new`}
-                    className="text-blue-600 hover:text-blue-800 font-medium"
-                  >
-                    Add Founder
-                  </Link>
-                </div>
-                
-                {company.founders && company.founders.length > 0 ? (
-                  <div className="space-y-4">
-                    {company.founders?.map((founder) => (
-                      <div key={founder.id} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                        <div className="flex justify-between items-start">
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-gray-900 mb-1">{founder.name}</h3>
-                            {founder.linkedin && (
-                              <p className="text-sm text-gray-600">
-                                <a
-                                  href={founder.linkedin}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="text-blue-600 hover:underline inline-flex items-center"
-                                >
-                                  LinkedIn Profile
-                                  <svg className="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                  </svg>
-                                </a>
-                              </p>
-                            )}
-                          </div>
-                          <div className="flex space-x-2 ml-4">
-                            <Link
-                              href={`/companies/${company.id}/founders/${founder.id}/edit`}
-                              className="text-green-600 hover:text-green-800 text-sm"
-                            >
-                              Edit
-                            </Link>
-                            <Link
-                              href={`/companies/${company.id}/founders/${founder.id}`}
-                              method="delete"
-                              data={{ confirm: 'Are you sure?' }}
-                              className="text-red-600 hover:text-red-800 text-sm"
-                            >
-                              Remove
-                            </Link>
-                          </div>
-                        </div>
+              
+              {company.founders && company.founders.length > 0 && (
+                <div>
+                  <h4 className="font-medium text-gray-900 mb-2">Founders</h4>
+                  <div className="space-y-2">
+                    {company.founders.map((founder) => (
+                      <div key={founder.id} className="bg-gray-50 rounded-lg p-3">
+                        <p className="font-medium text-gray-900">{founder.name}</p>
+                        {founder.linkedin && (
+                          <a 
+                            href={founder.linkedin} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline text-sm"
+                          >
+                            LinkedIn Profile
+                          </a>
+                        )}
                       </div>
                     ))}
                   </div>
-                ) : (
-                  <div className="text-center py-8 bg-gray-50 rounded-lg border border-gray-200">
-                    <div className="text-4xl mb-3">👥</div>
-                    <p className="text-gray-600 mb-4">No founders added yet</p>
-                    <Link
-                      href={`/companies/${company.id}/founders/new`}
-                      className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-                    >
-                      Add First Founder
-                    </Link>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-
-          {/* Calls Section */}
-          <div className="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-semibold text-gray-900">Investment Calls</h2>
-              <Link
-                href={`/companies/${company.id}/calls/new`}
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-              >
-                Add New Call
-              </Link>
-            </div>
-            
-            {calls && calls.length > 0 ? (
-              <div className="space-y-4">
-                {calls?.map((call) => (
-                  <div key={call.id} className="bg-gray-50 rounded-lg p-6 border border-gray-200 hover:border-gray-300 transition duration-200">
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <div className="flex items-center mb-3">
-                          <div className="flex items-center text-gray-600 mr-6">
-                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                            {formatDate(call.call_date)}
-                          </div>
-                          <div className="flex items-center text-gray-600">
-                            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            {formatTime(call.call_time)}
-                          </div>
-                        </div>
-                        
+                </div>
+              )}
+              
+              {calls && calls.length > 0 && (
+                <div>
+                  <h4 className="font-medium text-gray-900 mb-2">Recent Calls</h4>
+                  <div className="space-y-2">
+                    {calls.slice(0, 3).map((call) => (
+                      <div key={call.id} className="bg-gray-50 rounded-lg p-3">
+                        <p className="font-medium text-gray-900">
+                          {formatDate(call.call_date)} at {formatTime(call.call_time)}
+                        </p>
                         {call.participants && call.participants.length > 0 && (
-                          <div className="mb-3">
-                            <span className="text-sm font-medium text-gray-700">Participants: </span>
-                            <span className="text-sm text-gray-600">
-                              {call.participants?.map(p => p.name).join(', ')}
-                            </span>
-                          </div>
-                        )}
-                        
-                        {call.transcript_file && (
-                          <div className="text-sm text-gray-600">
-                            <span className="font-medium">Transcript preview:</span>
-                            <p className="mt-1 line-clamp-2">{truncateText(call.transcript_file, 150)}</p>
-                          </div>
+                          <p className="text-sm text-gray-600">
+                            Participants: {call.participants.map(p => p.name).join(', ')}
+                          </p>
                         )}
                       </div>
-                      
-                      <div className="flex space-x-2 ml-6">
-                        <Link
-                          href={`/companies/${company.id}/calls/${call.id}`}
-                          className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-                        >
-                          View
-                        </Link>
-                        <Link
-                          href={`/companies/${company.id}/calls/${call.id}/edit`}
-                          className="text-green-600 hover:text-green-800 text-sm font-medium"
-                        >
-                          Edit
-                        </Link>
-                        <Link
-                          href={`/companies/${company.id}/calls/${call.id}`}
-                          method="delete"
-                          data={{ confirm: 'Are you sure? This will permanently delete the call transcript.' }}
-                          className="text-red-600 hover:text-red-800 text-sm font-medium"
-                        >
-                          Delete
-                        </Link>
-                      </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            ) : (
-              <div className="text-center py-12 bg-gray-50 rounded-lg border border-gray-200">
-                <div className="text-6xl mb-4">📞</div>
-                <h3 className="text-lg font-medium text-gray-900 mb-2">No calls recorded yet</h3>
-                <p className="text-gray-600 mb-6">Start tracking investment calls and transcripts for this company</p>
-                <Link
-                  href={`/companies/${company.id}/calls/new`}
-                  className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition duration-200"
-                >
-                  Record First Call
-                </Link>
-              </div>
-            )}
-
-            {calls && calls.length > 5 && (
-              <div className="mt-6 text-center">
-                <p className="text-sm text-gray-500">Showing most recent calls</p>
-              </div>
-            )}
+                </div>
+              )}
+            </div>
           </div>
-
-          {/* Actions */}
-          <div className="flex justify-center space-x-4">
-            <Link
-              href={`/companies/${company.id}/edit`}
-              className="bg-green-600 hover:bg-green-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
-            >
-              Edit Company
-            </Link>
-            <Link
-              href={`/companies/${company.id}`}
-              method="delete"
-              data={{ confirm: 'Are you sure? This will also delete all founders and calls.' }}
-              className="bg-red-600 hover:bg-red-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200"
-            >
-              Delete Company
-            </Link>
+        </section>
+        
+        <section className="lg:col-span-1" aria-labelledby="summary-heading">
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Investment Insights</h2>
+            <div className="space-y-4">
+              <div className="bg-blue-50 rounded-lg p-4">
+                <h3 className="font-medium text-blue-900 mb-2">Investment Score</h3>
+                <div className="flex items-center space-x-2">
+                  <div className="text-2xl font-bold text-blue-600">8.2</div>
+                  <div className="text-sm text-blue-600">out of 10</div>
+                </div>
+                <div className="w-full bg-blue-200 rounded-full h-2 mt-2">
+                  <div className="bg-blue-600 h-2 rounded-full" style={{width: '82%'}}></div>
+                </div>
+              </div>
+              
+              <div className="space-y-3">
+                <h3 className="font-medium text-gray-900">Key Takeaways</h3>
+                <div className="space-y-2">
+                  <div className="bg-green-50 border-l-4 border-green-400 p-3">
+                    <p className="text-sm font-medium text-green-800">Strong Revenue Growth</p>
+                    <p className="text-xs text-green-600">300% YoY revenue growth with 150 enterprise customers</p>
+                  </div>
+                  <div className="bg-yellow-50 border-l-4 border-yellow-400 p-3">
+                    <p className="text-sm font-medium text-yellow-800">Technical Differentiation</p>
+                    <p className="text-xs text-yellow-600">Sophisticated MLOps pipeline with federated learning</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </section>
+        
+        <section className="lg:col-span-1" aria-labelledby="sentiment-heading">
+          <div className="bg-white rounded-lg shadow-lg p-6">
+            <h2 className="text-xl font-semibold text-gray-900 mb-4">Sentiment Analysis</h2>
+            <div className="space-y-4">
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="font-medium text-gray-900 mb-2">Analysis Clusters</h3>
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-700">Competitive Differentiation</span>
+                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">8 insights</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-700">Startup Team</span>
+                    <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded">12 insights</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-gray-700">Commercial Execution</span>
+                    <span className="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded">15 insights</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="font-medium text-gray-900 mb-2">AI Chat</h3>
+                <div className="space-y-2">
+                  <div className="bg-blue-50 rounded-lg p-3">
+                    <p className="text-sm text-blue-800">Hi! I can help you analyze the conversation data. Ask me anything about the interviews, sentiment patterns, or key insights.</p>
+                  </div>
+                  <div className="flex space-x-2">
+                    <input 
+                      type="text" 
+                      placeholder="Ask about competitive differentiation, team, or execution..."
+                      className="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm"
+                    />
+                    <button className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700">
+                      Send
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
       </div>
-    </Layout>
   )
 }
