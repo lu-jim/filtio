@@ -1,13 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../components/Layout'
-import { Link } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/react'
 // Temporarily comment out demo components to fix hooks issue
 // import { ParticipantColumn } from '../../demo/participant-column'
 // import { InsightsColumn } from '../../demo/insights-column'
 // import { SentimentColumn } from '../../demo/sentiment-column'
 import { Button } from '../../components/Button'
 import { ThemeToggle } from '../../components/ThemeToggle'
-import { Menu } from 'lucide-react'
+import { Menu, Plus, X } from 'lucide-react'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -47,6 +47,11 @@ interface Props {
 }
 
 export default function CompaniesShow({ company, calls }: Props) {
+  const [showAddFounderForm, setShowAddFounderForm] = useState(false)
+  const [founderName, setFounderName] = useState('')
+  const [founderLinkedin, setFounderLinkedin] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
@@ -65,6 +70,35 @@ export default function CompaniesShow({ company, calls }: Props) {
 
   const truncateText = (text: string, length: number) => {
     return text.length > length ? text.substring(0, length) + '...' : text
+  }
+
+  const handleAddFounder = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!founderName.trim()) return
+
+    setIsSubmitting(true)
+    router.post(`/companies/${company.id}/founders`, {
+      founder: {
+        name: founderName.trim(),
+        linkedin: founderLinkedin.trim() || undefined
+      }
+    }, {
+      onSuccess: () => {
+        setFounderName('')
+        setFounderLinkedin('')
+        setShowAddFounderForm(false)
+        setIsSubmitting(false)
+      },
+      onError: () => {
+        setIsSubmitting(false)
+      }
+    })
+  }
+
+  const handleCancelAddFounder = () => {
+    setFounderName('')
+    setFounderLinkedin('')
+    setShowAddFounderForm(false)
   }
 
   return (
@@ -122,9 +156,71 @@ export default function CompaniesShow({ company, calls }: Props) {
                 </div>
               </div>
               
-              {company.founders && company.founders.length > 0 && (
-                <div>
-                  <h4 className="font-medium text-card-foreground mb-2">Founders</h4>
+              <div>
+                <div className="flex items-center justify-between mb-2">
+                  <h4 className="font-medium text-card-foreground">Founders</h4>
+                  {!showAddFounderForm && (
+                    <button
+                      onClick={() => setShowAddFounderForm(true)}
+                      className="flex items-center gap-1 text-primary hover:text-primary/80 text-sm font-medium transition-colors"
+                    >
+                      <Plus className="h-4 w-4" />
+                      Add Founder
+                    </button>
+                  )}
+                </div>
+                
+                {showAddFounderForm && (
+                  <div className="bg-primary/5 border border-primary/20 rounded-lg p-4 mb-3">
+                    <form onSubmit={handleAddFounder} className="space-y-3">
+                      <div>
+                        <label htmlFor="founder-name" className="block text-sm font-medium text-card-foreground mb-1">
+                          Founder Name *
+                        </label>
+                        <input
+                          id="founder-name"
+                          type="text"
+                          value={founderName}
+                          onChange={(e) => setFounderName(e.target.value)}
+                          className="w-full px-3 py-2 border border-input rounded-lg text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                          placeholder="Enter founder name"
+                          required
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="founder-linkedin" className="block text-sm font-medium text-card-foreground mb-1">
+                          LinkedIn URL
+                        </label>
+                        <input
+                          id="founder-linkedin"
+                          type="url"
+                          value={founderLinkedin}
+                          onChange={(e) => setFounderLinkedin(e.target.value)}
+                          className="w-full px-3 py-2 border border-input rounded-lg text-sm bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                          placeholder="https://linkedin.com/in/username"
+                        />
+                      </div>
+                      <div className="flex gap-2">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting || !founderName.trim()}
+                          className="bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        >
+                          {isSubmitting ? 'Adding...' : 'Add Founder'}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={handleCancelAddFounder}
+                          className="bg-secondary text-secondary-foreground px-4 py-2 rounded-lg text-sm hover:bg-secondary/90 transition-colors"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                )}
+
+                {company.founders && company.founders.length > 0 && (
                   <div className="space-y-2">
                     {company.founders.map((founder) => (
                       <div key={founder.id} className="bg-muted rounded-lg p-3">
@@ -142,8 +238,8 @@ export default function CompaniesShow({ company, calls }: Props) {
                       </div>
                     ))}
                   </div>
-                </div>
-              )}
+                )}
+              </div>
               
               {calls && calls.length > 0 && (
                 <div>
