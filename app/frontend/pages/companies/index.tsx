@@ -13,7 +13,7 @@ interface Company {
   id: number
   name: string
   website?: string
-  founders: Founder[]
+  founders?: Founder[]
 }
 
 interface Props {
@@ -87,7 +87,7 @@ export default function CompaniesIndex({ companies }: Props) {
 
               <div className="border-t pt-3">
                 <h3 className="text-sm font-medium text-gray-700 mb-2">Founders</h3>
-                {company.founders.length > 0 ? (
+                {company.founders && company.founders.length > 0 ? (
                   <div className="space-y-1">
                     {company.founders.map((founder) => (
                       <div
