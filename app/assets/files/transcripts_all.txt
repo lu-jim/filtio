@@ -1,0 +1,298 @@
+===== transcript01.txt =====
+Transcript – Founder #1
+
+Kfund: Thanks for joining today. To start, can you give us the elevator pitch for Embat?
+
+Founder: Of course. Embat is a real-time treasury management platform for mid-sized companies. We help CFOs gain visibility into their cash flows, automate reconciliation, and integrate directly with banks and ERPs. Our goal is to make financial teams as agile as product teams.
+
+Kfund: What do you see as your main competitive advantage in this space?
+
+Founder: Honestly, it’s the speed and simplicity of implementation. Legacy systems take months to roll out, while we get customers up and running in under two weeks. Plus, we offer pre-built connectors to the top 30 banks in Europe.
+
+Kfund: Interesting. Some startups exaggerate “ease of use.” Can you share evidence from your current customers?
+
+Founder: Absolutely. One of our early adopters, a Spanish logistics company, went live in 10 days. Their CFO said it felt like “plug and play.” We also track onboarding satisfaction internally — our NPS post-onboarding is 72, which is way above industry norms.
+
+Kfund: That’s impressive. Let’s talk about the team. Who’s leading product and engineering?
+
+Founder: I co-founded Embat with my partner, who was previously at JP Morgan’s treasury desk. He brings deep domain expertise. On the tech side, our CTO built scalable systems at Cabify. The three of us — business, finance, and tech — cover the critical pillars.
+
+Kfund: And how do you handle disagreements within the founding team?
+
+Founder: [laughs] Good question. We’ve known each other for six years, so we’re comfortable challenging ideas. For example, I tend to push for aggressive go-to-market, while our CTO emphasizes robustness. We try to meet in the middle by validating with customers before committing.
+
+Kfund: Speaking of go-to-market, what’s been your most effective growth channel so far?
+
+Founder: Referrals, hands down. Once CFOs see the dashboards, they share them in their network. That said, we’ve recently invested in outbound sales — we doubled our SDR team in Q2, and early results are promising.
+
+Kfund: How confident are you in scaling that sales engine efficiently?
+
+Founder: I’d say very confident. Our sales cycle is around 60 days, which is already shorter than the 90–120 day norm in this market. We’re training the team with playbooks we developed based on the first 50 deals.
+
+Kfund: Last one for me: what keeps you up at night as you think about this Series B?
+
+Founder: Making sure we don’t lose focus. There’s always a temptation to expand product scope too early, but we’re staying disciplined around treasury. If we execute well here, the adjacencies — like FX hedging or payments — will come naturally.
+
+===== transcript02.txt =====
+Transcript – Founder #2
+
+Kfund: Thanks for joining. Could you share your perspective on what makes Embat unique?
+
+Founder: Sure. We’re not just another treasury tool — we’re building the financial operating system for mid-market companies. Our vision is to be the layer CFOs rely on daily, not just once a month for reporting.
+
+Kfund: That’s a big ambition. How close do you think you are to that vision today?
+
+Founder: Honestly, closer than most people think. We already have modules that cover cash visibility, liquidity forecasting, and bank connectivity. The next step is embedding payments and FX, which customers are asking for.
+
+Kfund: You mentioned customers are requesting these features. How do you decide which to prioritize?
+
+Founder: We run structured customer councils quarterly, where CFOs vote on priorities. But we’re also proactive — sometimes we push features they didn’t know they needed. For example, our “scenario planning” tool came from our product team, and now it’s one of our stickiest features.
+
+Kfund: Let’s talk about the team. How would you describe your leadership style compared to your co-founders?
+
+Founder: I’m more of the connector — I bridge finance and tech. My co-founder is very strong on sales, while our CTO is purely technical. We complement each other well. That said, I tend to be the one who insists we move faster.
+
+Kfund: Have there been challenges in balancing speed with product stability?
+
+Founder: Naturally, yes. Early on we shipped quickly and had to re-architect some modules. But now we’ve established a much stronger engineering culture. I wouldn’t say it slowed us down — if anything, it forced us to learn fast.
+
+Kfund: Let’s dig into the competitive landscape. Who do you see as your main rivals?
+
+Founder: Legacy treasury systems like Kyriba or TMS. They’re built for enterprises, so they’re too heavy for mid-market. The real competition is CFOs sticking with Excel — and that’s where we win, because we’re intuitive.
+
+Kfund: Some potential customers tell us switching from Excel is actually harder than expected. What’s your take?
+
+Founder: [pauses] Well, change management is always a challenge, but we’ve simplified onboarding to the point where it’s mostly a mindset issue. Once they experience the dashboards, they don’t want to go back.
+
+Kfund: Finally, as you scale, where do you see the biggest execution risks?
+
+Founder: Talent density. We’re competing with top tech firms for engineers and salespeople. That’s why we’re raising this round — to make sure we can attract the best before our competitors do.
+
+===== transcript03.txt =====
+Transcript – Customer #1
+
+Kfund: Thanks for taking the time. Could you tell us how you’re using Embat today?
+
+Customer: Sure. We use it mainly for cash visibility and bank reconciliation. It saves our finance team a few hours every week compared to Excel.
+
+Kfund: That sounds like a solid improvement. How smooth was the onboarding process for your team?
+
+Customer: [hesitates] It was… good overall, though not as instant as “plug and play.” It took closer to three weeks to get everything configured because our ERP integration needed some customization. Their support team was very responsive, though.
+
+Kfund: Understood. How do your finance team members feel about the product day to day?
+
+Customer: They like the dashboards, especially the real-time view. Some of the forecasting features are still a bit rough, so we rely on our own models in parallel. But overall, adoption is strong.
+
+Kfund: If you had to highlight one thing Embat does better than alternatives, what would it be?
+
+Customer: The user interface. Compared to legacy systems, it’s much cleaner. Even our non-finance managers can interpret the charts.
+
+Kfund: And what’s one thing you think they could improve?
+
+Customer: [laughs] Pricing. It’s fair for us now, but if they add more modules, I’m worried costs will scale up quickly. Also, we’d like to see more native integrations — we still have to export CSVs for a few banks.
+
+Kfund: That’s helpful. Do you see Embat as mission-critical for your operations?
+
+Customer: I’d say yes, increasingly so. Once you centralize cash flows here, switching back would be painful. That said, we still keep some processes outside the tool, just in case.
+
+Kfund: Last question: would you recommend Embat to another CFO?
+
+Customer: Yes, with caveats. It’s a great solution, but I’d advise them to budget time for setup and to check carefully which integrations are ready versus “on the roadmap.”
+
+===== transcript04.txt =====
+Transcript – Customer #2
+
+Kfund: Thanks for speaking with us. Could you start by sharing why you chose Embat in the first place?
+
+Customer: Sure. We were looking for something lighter than Kyriba but more robust than Excel. Embat hit that sweet spot — modern interface, but without the enterprise-level complexity.
+
+Kfund: How long have you been using it now?
+
+Customer: About 14 months. We signed right after their Series A, actually.
+
+Kfund: And in that time, how has your experience been?
+
+Customer: Very good overall. The biggest gain is transparency — I can log in at any time and see consolidated balances across all our banks. That’s something we didn’t have before.
+
+Kfund: Has it impacted your team’s efficiency?
+
+Customer: Definitely. Month-end close used to take six days; now it’s closer to four. That’s a tangible win for us.
+
+Kfund: What about onboarding — how did that process go?
+
+Customer: Smooth for the most part. Took about two weeks. We did have some hiccups connecting to one of our smaller banks, but Embat’s team pushed the integration live within a month.
+
+Kfund: Looking forward, what would make you increase your usage of Embat?
+
+Customer: Deeper forecasting and payment execution. Right now, we’re still using our old system for FX settlements. If Embat adds that, we’d happily consolidate everything into their platform.
+
+Kfund: Do you have any concerns about their ability to scale with you?
+
+Customer: [pauses] Slightly. We’re growing fast, and we want to be sure Embat can handle the volume. So far, no major issues, but I’ve seen other SaaS vendors struggle when clients get bigger.
+
+Kfund: Would you say Embat is delivering on what was promised when you signed?
+
+Customer: Yes, mostly. They sometimes announce features as “coming soon” and it takes longer than expected. But the core product works as advertised.
+
+Kfund: Final question — would you renew your contract today?
+
+Customer: Absolutely. It’s become an essential tool for us.
+
+===== transcript05.txt =====
+Transcript – Customer #3
+
+Kfund: Thanks for making the time. Could you tell us how your company is currently using Embat?
+
+Customer: We mainly use it for cash visibility and daily reconciliations. It gives us a cleaner overview than Excel, which is good.
+
+Kfund: How was the onboarding experience for your team?
+
+Customer: Honestly, more complex than we expected. The sales pitch was “live in 10 days,” but for us it took almost six weeks. We had to rely heavily on their support team to get our ERP connection stable.
+
+Kfund: Understood. And now that you’re live, how satisfied are you with the product overall?
+
+Customer: Mixed feelings. The dashboards are intuitive, but the forecasting module is still too basic for our needs. We often export data back to Excel for deeper analysis.
+
+Kfund: Have you considered alternatives?
+
+Customer: We looked at Kyriba, but it felt too heavy for our size. That’s why we gave Embat a chance. I’d say they’re a good middle ground, but not yet a full replacement for everything we do.
+
+Kfund: What’s the biggest strength you see in Embat?
+
+Customer: Customer support, definitely. They’re quick to respond, and I give them credit for listening to feedback.
+
+Kfund: And the biggest weakness?
+
+Customer: [pauses] Integrations. They cover the main banks, yes, but for smaller ones we still have manual workarounds. Also, the pricing model worries me — every new module seems like an add-on, and I’m not sure how sustainable that will be for us long term.
+
+Kfund: Has Embat made your team more efficient, despite these issues?
+
+Customer: Somewhat. We save time on reconciliations, but since we’re still double-checking numbers in Excel, the overall efficiency gain is less than what was promised.
+
+Kfund: Would you recommend Embat to another CFO?
+
+Customer: With caveats. I’d say it’s a good tool if you’re okay being patient while they mature. For companies expecting a polished, enterprise-grade solution today, I’d hesitate.
+
+===== transcript06.txt =====
+Transcript – Potential Customer #2
+
+Kfund: Thanks for taking the call. Could you tell us what tools you’re using for treasury management today?
+
+Potential Customer: We mostly rely on Excel, with some automations layered in. And for bank connections, we’ve been testing Agicap, which is lighter weight.
+
+Kfund: Have you evaluated Embat yet?
+
+Potential Customer: Yes, I had a sales call with them. Honestly, the product looks nice. But we didn’t feel the value gap over what we already use was big enough.
+
+Kfund: Could you elaborate on that?
+
+Potential Customer: Sure. Their dashboards look good, but setting them up still requires work. For a company our size, the time saved versus Excel didn’t feel like a game-changer. Plus, their pricing seemed higher than Agicap’s.
+
+Kfund: Did you see any advantages compared to your current setup?
+
+Potential Customer: Some, yes. Their reconciliation features seemed stronger. But forecasting felt similar to what we’re already doing. And the bank coverage was okay, but not much better than what we have.
+
+Kfund: What would convince you to switch?
+
+Potential Customer: If they could prove faster ROI — like cutting our workload in half, not just 20–30%. Or if they built a module that automated FX, which is where Excel really becomes a pain for us.
+
+Kfund: Do you think their pitch as a “plug-and-play” tool matches reality?
+
+Potential Customer: [laughs] I doubt it. No treasury tool is plug-and-play. From what I’ve heard from peers, it takes a few weeks at best. That’s fine — but they should set expectations better.
+
+Kfund: Final thought — what was your impression of the team?
+
+Potential Customer: Smart and driven, but they came across as very focused on growth. I didn’t feel they fully understood the smaller customer’s cost sensitivity.
+
+===== transcript07.txt =====
+Transcript – Industry Expert #1
+
+Kfund: Thanks for speaking with us. To start, how do you see the treasury management space evolving in Europe?
+
+Expert: It’s definitely heating up. Ten years ago, only enterprises bothered with treasury systems. Now, mid-market CFOs want real-time visibility too. That’s why you see players like Embat, Agicap, and Trovata gaining traction.
+
+Kfund: How would you position Embat within that landscape?
+
+Expert: They’re in a good spot — targeting companies that have outgrown Excel but don’t want a full-blown Kyriba. That mid-market segment is underserved.
+
+Kfund: Do you think their product is differentiated?
+
+Expert: To some extent. Their UX is very strong, probably the best in Southern Europe. But functional depth is still limited. For example, their forecasting and FX modules lag behind. Customers notice that.
+
+Kfund: And what about adoption speed — they claim two weeks on average.
+
+Expert: [chuckles] That’s optimistic. Two to four weeks is possible if you’re a straightforward client. But with ERP complexity, it can stretch to two months. It’s not unusual, but the gap between promise and reality matters.
+
+Kfund: Understood. How do you assess their go-to-market execution?
+
+Expert: They’ve been smart — starting in Spain, then expanding regionally. But scaling outbound sales in B2B fintech is expensive. Unless they crack partnerships with banks or auditors, CAC will climb quickly.
+
+Kfund: Do you think their team has what it takes to execute?
+
+Expert: The founders are impressive — strong finance and tech backgrounds. But they’ll need more senior leadership as they move upmarket. Right now, a lot of institutional processes are missing.
+
+Kfund: If you were evaluating them for Series B, what would you look for?
+
+Expert: Clear evidence of repeatable sales motion outside Spain, deeper integrations, and proof that customers actually expand usage over time. If churn is low and expansion is real, then they have a solid story.
+
+===== transcript08.txt =====
+Transcript – Industry Expert #2
+
+Kfund: Thanks for taking the time. How do you view Embat compared to other players in the treasury SaaS space?
+
+Expert: They’ve built strong momentum in Spain, but regionally they’re still a small player. Agicap and Trovata have more brand recognition across Europe. Embat needs to prove it can expand beyond its home market.
+
+Kfund: What do you think are their main strengths?
+
+Expert: Product usability, no doubt. CFOs like the dashboards. And they’ve been good at listening to customers and iterating quickly. That’s something legacy systems can’t match.
+
+Kfund: And their weaknesses?
+
+Expert: Depth and credibility. Forecasting is basic, multi-entity functionality is patchy, and compliance in larger markets like Germany or the UK is a question mark. Also, their sales narrative feels a bit too polished compared to where the product actually is.
+
+Kfund: Do you believe their claim of onboarding within two weeks?
+
+Expert: For very simple clients, maybe. But realistically, most mid-sized companies will take a month or more. I’ve heard of cases where it stretched to six weeks. That’s not bad, but it’s not what they pitch.
+
+Kfund: How do you assess the team’s ability to scale internationally?
+
+Expert: The founders are ambitious, but they’re still relatively inexperienced in running a pan-European go-to-market. They’ll need senior hires — particularly in enterprise sales and regulatory affairs — if they want to break out of the Iberian market.
+
+Kfund: From an investor perspective, what red flags would you watch for?
+
+Expert: High churn among early customers, over-promising on the roadmap, and a CAC/LTV ratio that doesn’t improve as they scale. Fintech history is full of great-looking dashboards that never turned into sustainable businesses.
+
+Kfund: Do you think the market is large enough to support a player like Embat?
+
+Expert: Absolutely — the mid-market treasury opportunity in Europe is significant. The question is whether Embat becomes the category winner or just another regional player.
+
+===== transcript-09.txt =====
+Transcript – Potential Customer #1
+
+Kfund: Thanks for joining. Could you tell us which system you’re currently using for treasury?
+
+Potential Customer: We’re on Kyriba. It’s a bit heavy, but it does the job for our multinational setup.
+
+Kfund: Have you looked into Embat at all?
+
+Potential Customer: Yes, we’ve had a demo. I liked the interface — it’s cleaner and more modern. But honestly, I’m not sure it’s mature enough for our complexity.
+
+Kfund: What gave you that impression?
+
+Potential Customer: During the demo, some of the forecasting features seemed simplified. Also, when I asked about specific integrations with smaller banks in Eastern Europe, they said it was “on the roadmap.” That’s a red flag for us — we can’t run treasury on promises.
+
+Kfund: Understood. How do you evaluate switching providers generally?
+
+Potential Customer: We’d need a clear ROI. For us, switching costs are high — retraining staff, redoing workflows. So a challenger like Embat has to be at least twice as good to justify the move.
+
+Kfund: What would make you seriously consider switching?
+
+Potential Customer: If they could show they handle multinational treasury at scale — multi-currency, multi-entity, regulatory compliance. Right now, I think they’re better suited for mid-market firms in one geography.
+
+Kfund: Do you think their positioning in the market makes sense?
+
+Potential Customer: Yes, targeting mid-sized companies is smart. But they shouldn’t overstate their readiness for larger enterprises. That could backfire.
+
+Kfund: Final question — what was your overall impression of the team when you met them?
+
+Potential Customer: Energetic and visionary, but maybe a bit too optimistic. I felt they were glossing over the gaps.
