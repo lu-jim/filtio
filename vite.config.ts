@@ -13,5 +13,13 @@ export default defineConfig({
     alias: {
       '@': '/app/frontend'
     }
-  }
+  },
+  server: {
+    host: '192.168.10.10', // replace with the IP address of the Homestead machine
+    https: false,
+    cors: false,
+    hmr: {
+        host: '192.168.10.10', // replace with the IP address of the Homestead machine
+    }
+},
 })

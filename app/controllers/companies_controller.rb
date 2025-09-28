@@ -3,10 +3,14 @@ class CompaniesController < ApplicationController
 
   def index
     @companies = Company.includes(:founders).all
+
+    render inertia: "companies/index", props: { companies: @companies }
   end
 
   def show
     @calls = @company.calls.includes(:participants).by_date.reverse_order
+
+    render inertia: "companies/show", props: { company: @company, calls: @calls }
   end
 
   def new

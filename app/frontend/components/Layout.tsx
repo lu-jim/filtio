@@ -1,13 +1,15 @@
-import { ReactNode } from 'react'
+import { Link } from '@inertiajs/react'
+import React from 'react'
 
-interface LayoutProps {
-  children: ReactNode
-}
-
-export default function Layout({ children }: LayoutProps) {
+export default function Layout({ children }) {
   return (
-    <main className="container mx-auto mt-28 px-5 flex">
-      {children}
+    <main>
+      <header>
+        <Link href="/">Home</Link>
+        <Link href="/about">About</Link>
+        <Link href="/contact">Contact</Link>
+      </header>
+      <article>{children}</article>
     </main>
   )
 }
