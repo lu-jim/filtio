@@ -2,6 +2,9 @@ import React from 'react'
 import Layout from '../../components/Layout'
 import { Link } from '@inertiajs/react'
 import { ThemeToggle } from '../../components/ThemeToggle'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction } from '../../components/Card'
+import { Button } from '../../components/Button'
+import { Badge } from '../../components/Badge'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -36,124 +39,140 @@ export default function CompaniesIndex({ companies }: Props) {
             </div>
           </div>
           <div className="flex items-center gap-4">
-            <Link
-              href="/companies/new"
-              className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
-            >
-              Add New Company
-            </Link>
+            <Button asChild>
+              <Link href="/companies/new">
+                Add New Company
+              </Link>
+            </Button>
             <ThemeToggle />
           </div>
         </div>
       </header>
 
-      <main className="container mx-auto px-4 py-8 w-full" role="main">
+      <main className="max-w-[1600px] mx-auto px-8 py-8 w-full" role="main">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl font-bold text-foreground">Portfolio Companies</h1>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
           {companies.map((company) => (
-            <div
-              key={company.id}
-              className="bg-card rounded-lg shadow-md hover:shadow-lg transition duration-200 p-6 border border-border"
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div className="flex items-start space-x-3">
+            <Card key={company.id} className="hover:shadow-lg transition-shadow h-full flex flex-col">
+              <CardHeader className="pb-3">
+                <div className="flex items-start gap-4">
                   {company.logo && (
-                    <img 
-                      src={company.logo} 
-                      alt={`${company.name} logo`}
-                      className="w-12 h-12 rounded-lg object-cover flex-shrink-0"
-                    />
-                  )}
-                  <div>
-                    <h2 className="text-xl font-semibold text-card-foreground mb-1">
-                      {company.name}
-                    </h2>
-                    {company.tagline && (
-                      <p className="text-muted-foreground text-sm mb-2">{company.tagline}</p>
-                    )}
-                    <div className="flex items-center space-x-4 text-sm text-muted-foreground">
-                      {company.year && (
-                        <span>Founded {company.year}</span>
-                      )}
-                      {company.size && (
-                        <span className="bg-primary/10 text-primary px-2 py-1 rounded-full text-xs">
-                          {company.size} employees
-                        </span>
-                      )}
+                    <div className="flex-shrink-0">
+                      <img 
+                        src={company.logo} 
+                        alt={`${company.name} logo`}
+                        className="w-12 h-12 rounded-lg object-cover border border-border"
+                      />
                     </div>
+                  )}
+                  <div className="flex-1 min-w-0">
+                    <CardTitle className="text-lg leading-tight mb-1.5">
+                      {company.name}
+                    </CardTitle>
+                    {company.tagline && (
+                      <CardDescription className="line-clamp-2 leading-snug">
+                        {company.tagline}
+                      </CardDescription>
+                    )}
                   </div>
                 </div>
-                <div className="flex space-x-2">
-                  <Link
-                    href={`/companies/${company.id}`}
-                    className="text-primary hover:text-primary/80 text-sm"
-                  >
-                    View
-                  </Link>
-                  <Link
-                    href={`/companies/${company.id}/edit`}
-                    className="text-chart-2 hover:text-chart-2/80 text-sm"
-                  >
-                    Edit
-                  </Link>
-                  <Link
-                    href={`/companies/${company.id}`}
-                    method="delete"
-                    data={{ confirm: 'Are you sure?' }}
-                    className="text-destructive hover:text-destructive/80 text-sm"
-                  >
-                    Delete
-                  </Link>
+              </CardHeader>
+
+              <CardContent className="space-y-3 pb-4 flex-1">
+                <div className="flex items-center gap-2 flex-wrap">
+                  {company.year && (
+                    <span className="text-xs text-muted-foreground">
+                      Founded {company.year}
+                    </span>
+                  )}
+                  {company.size && (
+                    <Badge variant="secondary" className="text-xs">
+                      {company.size} employees
+                    </Badge>
+                  )}
                 </div>
-              </div>
-              
-              {company.website && (
-                <p className="text-muted-foreground mb-3">
-                  <span className="inline-flex items-center">
-                    🌐 
+
+                {company.website && (
+                  <div className="flex items-center gap-1.5 text-sm">
+                    <span className="text-muted-foreground">🌐</span>
                     <a
                       href={company.website}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="ml-1 text-primary hover:underline"
+                      className="text-primary hover:underline truncate text-sm"
                     >
                       {company.website}
                     </a>
-                  </span>
-                </p>
-              )}
-
-              <div className="border-t border-border pt-3">
-                <h3 className="text-sm font-medium text-card-foreground mb-2">Founders</h3>
-                {company.founders && company.founders.length > 0 ? (
-                  <div className="space-y-1">
-                    {company.founders.map((founder) => (
-                      <div
-                        key={founder.id}
-                        className="flex items-center justify-between text-sm"
-                      >
-                        <span className="text-card-foreground">{founder.name}</span>
-                        {founder.linkedin && (
-                          <a
-                            href={founder.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-primary hover:text-primary/80"
-                          >
-                            LinkedIn
-                          </a>
-                        )}
-                      </div>
-                    ))}
                   </div>
-                ) : (
-                  <p className="text-muted-foreground text-sm">No founders listed</p>
                 )}
-              </div>
-            </div>
+
+                <div className="pt-2 border-t">
+                  <div className="text-xs font-medium text-muted-foreground mb-2">
+                    Founders
+                  </div>
+                  {company.founders && company.founders.length > 0 ? (
+                    <div className="space-y-2">
+                      {company.founders.map((founder) => (
+                        <div
+                          key={founder.id}
+                          className="flex items-center justify-between text-sm"
+                        >
+                          <span className="text-foreground">{founder.name}</span>
+                          {founder.linkedin && (
+                            <Button 
+                              variant="link" 
+                              size="sm" 
+                              asChild 
+                              className="h-auto p-0 text-xs"
+                            >
+                              <a
+                                href={founder.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                LinkedIn
+                              </a>
+                            </Button>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-muted-foreground text-sm">No founders listed</p>
+                  )}
+                </div>
+              </CardContent>
+
+              <CardFooter className="pt-3 pb-4 flex-wrap gap-2">
+                <Button variant="outline" size="sm" asChild className="flex-1">
+                  <Link href={`/companies/${company.id}`}>
+                    View
+                  </Link>
+                </Button>
+                <Button variant="outline" size="sm" asChild className="flex-1">
+                  <Link href={`/companies/${company.id}/edit`}>
+                    Edit
+                  </Link>
+                </Button>
+                <Button 
+                  variant="destructive" 
+                  size="sm" 
+                  asChild 
+                  className="flex-1"
+                >
+                  <Link
+                    href={`/companies/${company.id}`}
+                    method="delete"
+                    data={{ confirm: 'Are you sure?' }}
+                  >
+                    Delete
+                  </Link>
+                </Button>
+              </CardFooter>
+            </Card>
           ))}
         </div>
 
@@ -167,12 +186,11 @@ export default function CompaniesIndex({ companies }: Props) {
               <p className="text-muted-foreground mb-6">
                 Start building your portfolio by adding your first company.
               </p>
-              <Link
-                href="/companies/new"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-3 px-6 rounded-lg transition duration-200"
-              >
-                Add First Company
-              </Link>
+              <Button size="lg" asChild>
+                <Link href="/companies/new">
+                  Add First Company
+                </Link>
+              </Button>
             </div>
           </div>
         )}
