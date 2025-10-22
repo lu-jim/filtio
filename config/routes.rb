@@ -1,4 +1,20 @@
 Rails.application.routes.draw do
+  resources :chats do
+    resources :messages, only: [:create]
+  end
+  
+  # Inertia chat routes
+  namespace :inertia do
+    resources :chats, only: [:index, :show, :new, :create] do
+      resources :messages, only: [:create]
+    end
+  end
+  
+  resources :models, only: [:index, :show] do
+    collection do
+      post :refresh
+    end
+  end
   get "inertia-example", to: "inertia_example#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
