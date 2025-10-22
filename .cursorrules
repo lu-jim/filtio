@@ -1,0 +1,131 @@
+# Cursor AI Rules for Filtio Project
+
+## Documentation Guidelines
+
+### When to Create Documentation
+Create summary documentation files for:
+- Feature implementations
+- Major integrations
+- Architecture changes
+- Refactoring work
+- Bug fixes that required significant investigation
+
+### Where to Save Documentation
+**ALWAYS save documentation in**: `agents/logs/`
+
+### Naming Convention
+Use descriptive, date-stamped filenames:
+- Format: `YYYY-MM-DD_descriptive_name.md`
+- Example: `2025-10-22_ruby_llm_inertia_integration.md`
+
+### Documentation Template
+```markdown
+# [Feature/Change Name]
+
+**Date**: YYYY-MM-DD
+**Type**: Feature | Integration | Refactor | Bugfix
+**Status**: Completed | In Progress
+
+## Overview
+What was done and why
+
+## Changes Made
+- New files
+- Modified files
+- Deleted files
+
+## Technical Details
+Implementation specifics
+
+## Usage
+How to use the changes
+
+## Future Improvements
+Optional next steps
+```
+
+## Project Structure
+
+### Frontend (React + Inertia)
+- Components: `app/frontend/components/`
+- Pages: `app/frontend/pages/`
+- Layouts use shadcn components (New York style)
+
+### Backend (Rails)
+- Controllers: `app/controllers/`
+- Models: `app/models/`
+- Jobs: `app/jobs/`
+- Channels: `app/channels/`
+
+### Styling
+- Use existing shadcn components
+- Theme variables (bg-card, bg-muted, text-foreground, etc.)
+- Lucide React icons
+- Tailwind CSS utilities
+
+### Navigation
+- All pages should use the `Navbar` component
+- Pass custom actions as children if needed
+
+## Code Standards
+
+### React Components
+- TypeScript with proper interfaces
+- Use Inertia's `Link` component for navigation
+- Import shadcn components from `../../components/`
+- Use `cn()` utility for class names
+
+### Rails Controllers
+- Render Inertia components: `render inertia: "ComponentName"`
+- Pass props as serialized data
+- Use standard RESTful actions
+
+### Real-Time Features
+- Use Action Cable for WebSocket communication
+- Create channels in `app/channels/`
+- TypeScript clients in `app/frontend/entrypoints/`
+
+## Before Finishing a Session
+
+1. ✅ Create/update documentation in `agents/logs/`
+2. ✅ Check for linting errors
+3. ✅ Verify no breaking changes
+4. ✅ Update this file if project structure changes
+5. ✅ List all new files and modifications in documentation
+
+## Project-Specific Notes
+
+- Uses ruby_llm for AI chat functionality
+- Action Cable for real-time streaming
+- Inertia Rails for SPA-like experience
+- shadcn for UI components (New York style)
+- Vite for frontend bundling
+- SQLite for development (check production setup)
+
+## Common Patterns
+
+### Adding a New Page
+1. Create page in `app/frontend/pages/[section]/[Name].tsx`
+2. Create controller action that renders Inertia
+3. Add route in `config/routes.rb`
+4. Include `Navbar` component in page layout
+
+### Adding a New Component
+1. Create in `app/frontend/components/[Name].tsx`
+2. Follow shadcn patterns (use `cn()`, data-slot attributes)
+3. Export properly for imports
+
+### Real-Time Updates
+1. Create channel in `app/channels/`
+2. Create TypeScript client in `app/frontend/entrypoints/`
+3. Use `ActionCable.server.broadcast()` in Rails
+4. Subscribe in React component with cleanup
+
+## Don't
+- ❌ Create documentation in project root
+- ❌ Use inline styles (use Tailwind classes)
+- ❌ Import from non-existent components
+- ❌ Break existing navigation patterns
+- ❌ Remove the Navbar from pages
+- ❌ Use non-shadcn component patterns
+

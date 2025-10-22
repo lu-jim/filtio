@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
-  resources :chats do
+  # Inertia chat routes (main implementation)
+  resources :chats, only: [:index, :show, :new, :create] do
     resources :messages, only: [:create]
-  end
-  
-  # Inertia chat routes
-  namespace :inertia do
-    resources :chats, only: [:index, :show, :new, :create] do
-      resources :messages, only: [:create]
-    end
   end
   
   resources :models, only: [:index, :show] do
