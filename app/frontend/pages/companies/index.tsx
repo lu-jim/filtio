@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link } from '@inertiajs/react'
+import { Link, router } from '@inertiajs/react'
 import { Navbar } from '../../components/Navbar'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction } from '../../components/Card'
-import { Button } from '../../components/Button'
+import { Button, buttonVariants } from '../../components/Button'
 import { Badge } from '../../components/Badge'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../components/AlertDialog'
 import { Plus } from 'lucide-react'
 
 // TypeScript interfaces for the data structure
@@ -148,20 +149,34 @@ export default function CompaniesIndex({ companies }: Props) {
                     Edit
                   </Link>
                 </Button>
-                <Button 
-                  variant="destructive" 
-                  size="sm" 
-                  asChild 
-                  className="flex-1"
-                >
-                  <Link
-                    href={`/companies/${company.id}`}
-                    method="delete"
-                    data={{ confirm: 'Are you sure?' }}
-                  >
-                    Delete
-                  </Link>
-                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button 
+                      variant="destructive" 
+                      size="sm" 
+                      className="flex-1"
+                    >
+                      Delete
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        This will permanently delete <strong>{company.name}</strong>. This action cannot be undone.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction
+                        className={buttonVariants({ variant: "destructive" })}
+                        onClick={() => router.delete(`/companies/${company.id}`)}
+                      >
+                        Delete
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </CardFooter>
             </Card>
           ))}
