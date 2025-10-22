@@ -1,13 +1,27 @@
+# frozen_string_literal: true
+
 class ChatsController < ApplicationController
   before_action :set_chat, only: [:show]
 
   def index
-    @chats = Chat.order(created_at: :desc)
+    render inertia: "chats/Index", props: {
+      chats: Chat.order(created_at: :desc).map do |chat|
+        {
+          id: chat.id,
+          model_name: chat.model.name,
+          created_at: chat.created_at,
+          messages_count: chat.messages.count
+        }
+      end,
+      models: Model.all.map { |model| { id: model.id, name: model.name } }
+    }
   end
 
   def new
-    @chat = Chat.new
-    @selected_model = params[:model]
+    render inertia: "chats/New", props: {
+      selected_model: params[:model],
+      models: Model.all.map { |model| { id: model.id, name: model.name } }
+    }
   end
 
   def create
@@ -16,11 +30,24 @@ class ChatsController < ApplicationController
     @chat = Chat.create!(model: model)
     ChatResponseJob.perform_later(@chat.id, prompt)
 
-    redirect_to @chat, notice: 'Chat was successfully created.'
+    redirect_to chat_path(@chat), notice: 'Chat was successfully created.'
   end
 
   def show
-    @message = @chat.messages.build
+    render inertia: "chats/Show", props: {
+      chat: {
+        id: @chat.id,
+        model_name: @chat.model.name,
+        messages: @chat.messages.where.not(id: nil).map do |message|
+          {
+            id: message.id,
+            role: message.role,
+            content: message.content,
+            created_at: message.created_at
+          }
+        end
+      }
+    }
   end
 
   private
@@ -37,3 +64,4 @@ class ChatsController < ApplicationController
     params[:chat][:prompt]
   end
 end
+

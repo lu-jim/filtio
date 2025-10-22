@@ -1,6 +1,14 @@
 import { Head, Link, useForm } from '@inertiajs/react'
 import React, { useState, useEffect, useRef } from 'react'
 import ChatChannel from '../../entrypoints/chat_cable'
+import { Navbar } from '../../components/Navbar'
+import { Button } from '../../components/Button'
+import { Card } from '../../components/Card'
+import { Textarea } from '../../components/Textarea'
+import { Badge } from '../../components/Badge'
+import { ScrollArea } from '../../components/Scroll-area'
+import { Bot, Send, User } from 'lucide-react'
+import { cn } from '../../lib/utils'
 
 interface Message {
   id: number
@@ -62,7 +70,7 @@ export default function ChatShow({ chat }: Props) {
     e.preventDefault()
     if (!data.content.trim()) return
 
-    post(`/inertia/chats/${chat.id}/messages`, {
+    post(`/chats/${chat.id}/messages`, {
       data: {
         message: {
           content: data.content
@@ -82,99 +90,133 @@ export default function ChatShow({ chat }: Props) {
       .replace(/\n/g, '<br />')
   }
 
+  const formatTime = (timestamp: string) => {
+    return new Date(timestamp).toLocaleTimeString('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    })
+  }
+
   return (
     <>
       <Head title={`Chat ${chat.id}`} />
       
-      <div className="max-w-4xl mx-auto h-screen flex flex-col">
-        {/* Header */}
-        <div className="bg-white border-b border-gray-200 p-4 flex items-center justify-between">
-          <div>
-            <h1 className="text-xl font-semibold text-gray-900">
-              Chat #{chat.id}
-            </h1>
-            <p className="text-sm text-gray-600">
-              Using {chat.model_name}
-            </p>
+      <div className="flex h-screen flex-col bg-background">
+        <Navbar>
+          <div className="flex items-center gap-2">
+            <span className="text-sm text-muted-foreground">Chat #{chat.id}</span>
+            <Badge variant="secondary" className="text-xs">
+              {chat.model_name}
+            </Badge>
           </div>
-          <Link
-            href="/inertia/chats"
-            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-          >
-            ← Back to chats
-          </Link>
-        </div>
+        </Navbar>
 
         {/* Messages */}
-        <div className="flex-1 overflow-y-auto p-4 space-y-4">
-          {messages.length === 0 && !streamingMessage ? (
-            <div className="text-center py-12 text-gray-500">
-              <p className="text-lg">No messages yet</p>
-              <p className="text-sm">Start the conversation below!</p>
-            </div>
-          ) : (
-            <>
-              {messages.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${
-                    message.role === 'user' ? 'justify-end' : 'justify-start'
-                  }`}
-                >
+        <ScrollArea className="flex-1">
+          <div className="mx-auto max-w-5xl space-y-6 p-6">
+            {messages.length === 0 && !streamingMessage ? (
+              <div className="flex h-full flex-col items-center justify-center py-12 text-center">
+                <Bot className="text-muted-foreground mb-4 size-12" />
+                <p className="text-muted-foreground text-lg font-medium">
+                  No messages yet
+                </p>
+                <p className="text-muted-foreground mt-1 text-sm">
+                  Start the conversation below!
+                </p>
+              </div>
+            ) : (
+              <>
+                {messages.map((message) => (
                   <div
-                    className={`max-w-3xl px-4 py-3 rounded-lg ${
-                      message.role === 'user'
-                        ? 'bg-blue-600 text-white'
-                        : 'bg-gray-100 text-gray-900'
-                    }`}
+                    key={message.id}
+                    className={cn(
+                      "flex gap-4",
+                      message.role === 'user' ? 'justify-end' : 'justify-start'
+                    )}
                   >
-                    <div
-                      className="prose prose-sm max-w-none"
-                      dangerouslySetInnerHTML={{
-                        __html: formatMessage(message.content)
-                      }}
-                    />
-                    <div
-                      className={`text-xs mt-2 ${
-                        message.role === 'user' ? 'text-blue-100' : 'text-gray-500'
-                      }`}
+                    {message.role === 'assistant' && (
+                      <div className="bg-primary/10 flex size-8 shrink-0 items-center justify-center rounded-full">
+                        <Bot className="text-primary size-4" />
+                      </div>
+                    )}
+                    
+                    <Card
+                      className={cn(
+                        "max-w-3xl",
+                        message.role === 'user'
+                          ? 'bg-primary text-primary-foreground'
+                          : 'bg-muted'
+                      )}
                     >
-                      {new Date(message.created_at).toLocaleTimeString()}
-                    </div>
+                      <div className="p-4">
+                        <div
+                          className={cn(
+                            "prose prose-sm max-w-none",
+                            message.role === 'user' && "[&_*]:text-primary-foreground"
+                          )}
+                          dangerouslySetInnerHTML={{
+                            __html: formatMessage(message.content)
+                          }}
+                        />
+                        <div
+                          className={cn(
+                            "mt-2 text-xs",
+                            message.role === 'user'
+                              ? 'text-primary-foreground/70'
+                              : 'text-muted-foreground'
+                          )}
+                        >
+                          {formatTime(message.created_at)}
+                        </div>
+                      </div>
+                    </Card>
+
+                    {message.role === 'user' && (
+                      <div className="bg-primary flex size-8 shrink-0 items-center justify-center rounded-full">
+                        <User className="size-4 text-white" />
+                      </div>
+                    )}
                   </div>
-                </div>
-              ))}
-              
-              {/* Streaming message */}
-              {streamingMessage && (
-                <div className="flex justify-start">
-                  <div className="max-w-3xl px-4 py-3 rounded-lg bg-gray-100 text-gray-900">
-                    <div
-                      className="prose prose-sm max-w-none"
-                      dangerouslySetInnerHTML={{
-                        __html: formatMessage(streamingMessage)
-                      }}
-                    />
-                    <div className="text-xs mt-2 text-gray-500">
-                      <span className="animate-pulse">Typing...</span>
+                ))}
+                
+                {/* Streaming message */}
+                {streamingMessage && (
+                  <div className="flex gap-4">
+                    <div className="bg-primary/10 flex size-8 shrink-0 items-center justify-center rounded-full">
+                      <Bot className="text-primary size-4" />
                     </div>
+                    
+                    <Card className="bg-muted max-w-3xl">
+                      <div className="p-4">
+                        <div
+                          className="prose prose-sm max-w-none"
+                          dangerouslySetInnerHTML={{
+                            __html: formatMessage(streamingMessage)
+                          }}
+                        />
+                        <div className="text-muted-foreground mt-2 text-xs">
+                          <span className="animate-pulse">Typing...</span>
+                        </div>
+                      </div>
+                    </Card>
                   </div>
-                </div>
-              )}
-            </>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
+                )}
+              </>
+            )}
+            <div ref={messagesEndRef} />
+          </div>
+        </ScrollArea>
 
         {/* Message form */}
-        <div className="bg-white border-t border-gray-200 p-4">
-          <form onSubmit={handleSubmit} className="flex gap-3">
-            <div className="flex-1">
-              <textarea
+        <div className="border-t bg-card px-6 py-4">
+          <div className="mx-auto max-w-5xl">
+            <form onSubmit={handleSubmit} className="flex gap-3">
+              <Textarea
                 value={data.content}
                 onChange={(e) => setData('content', e.target.value)}
                 placeholder="Type your message..."
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
+                className="min-h-[60px] resize-none"
                 rows={1}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' && !e.shiftKey) {
@@ -183,19 +225,21 @@ export default function ChatShow({ chat }: Props) {
                   }
                 }}
                 disabled={processing}
+                aria-invalid={!!errors.content}
               />
-              {errors.content && (
-                <p className="mt-1 text-sm text-red-600">{errors.content}</p>
-              )}
-            </div>
-            <button
-              type="submit"
-              disabled={processing || !data.content.trim()}
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {processing ? 'Sending...' : 'Send'}
-            </button>
-          </form>
+              <Button
+                type="submit"
+                disabled={processing || !data.content.trim()}
+                size="lg"
+                className="self-end"
+              >
+                <Send />
+              </Button>
+            </form>
+            {errors.content && (
+              <p className="text-destructive mt-2 text-sm">{errors.content}</p>
+            )}
+          </div>
         </div>
       </div>
     </>

@@ -1,5 +1,13 @@
 import { Head, Link } from '@inertiajs/react'
 import React, { useState } from 'react'
+import { Navbar } from '../../components/Navbar'
+import { Button } from '../../components/Button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/Card'
+import { Label } from '../../components/Label'
+import { Select } from '../../components/Select'
+import { Textarea } from '../../components/Textarea'
+import { Badge } from '../../components/Badge'
+import { MessageSquare, Plus, Sparkles } from 'lucide-react'
 
 interface Chat {
   id: number
@@ -27,110 +35,136 @@ export default function ChatIndex({ chats, models }: Props) {
     if (!prompt.trim() || !selectedModel) return
 
     // Create new chat with prompt
-    window.location.href = `/inertia/chats/new?model=${selectedModel}&prompt=${encodeURIComponent(prompt)}`
+    window.location.href = `/chats/new?model=${selectedModel}&prompt=${encodeURIComponent(prompt)}`
+  }
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    })
   }
 
   return (
     <>
       <Head title="Chats" />
       
-      <div className="max-w-4xl mx-auto p-6">
-        <div className="flex justify-between items-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Chats</h1>
-          <Link 
-            href="/inertia/chats/new" 
-            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-          >
-            New Chat
+      <div className="min-h-screen bg-background">
+        <Navbar>
+          <Link href="/chats/new">
+            <Button size="sm">
+              <Plus />
+              New Chat
+            </Button>
           </Link>
+        </Navbar>
+
+        <div className="mx-auto max-w-6xl space-y-6 p-6">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Chats</h1>
+          <p className="text-muted-foreground mt-1 text-sm">
+            Have conversations with AI language models
+          </p>
         </div>
 
         {/* Quick start form */}
-        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-xl font-semibold mb-4">Start a new conversation</h2>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="model" className="block text-sm font-medium text-gray-700 mb-2">
-                Choose a model
-              </label>
-              <select
-                id="model"
-                value={selectedModel}
-                onChange={(e) => setSelectedModel(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
+        <Card>
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <Sparkles className="size-5 text-primary" />
+              <CardTitle>Start a new conversation</CardTitle>
+            </div>
+            <CardDescription>
+              Choose a model and begin chatting with AI
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="model">Model</Label>
+                <Select
+                  id="model"
+                  value={selectedModel}
+                  onChange={(e) => setSelectedModel(e.target.value)}
+                  required
+                >
+                  <option value="">Select a model...</option>
+                  {models.map((model) => (
+                    <option key={model.id} value={model.id}>
+                      {model.name}
+                    </option>
+                  ))}
+                </Select>
+              </div>
+              
+              <div className="space-y-2">
+                <Label htmlFor="prompt">Message</Label>
+                <Textarea
+                  id="prompt"
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  placeholder="Type your message here..."
+                  rows={3}
+                  required
+                />
+              </div>
+              
+              <Button
+                type="submit"
+                disabled={!prompt.trim() || !selectedModel}
+                className="w-full"
+                size="lg"
               >
-                <option value="">Select a model...</option>
-                {models.map((model) => (
-                  <option key={model.id} value={model.id}>
-                    {model.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            
-            <div>
-              <label htmlFor="prompt" className="block text-sm font-medium text-gray-700 mb-2">
-                Your message
-              </label>
-              <textarea
-                id="prompt"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Type your message here..."
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                rows={3}
-                required
-              />
-            </div>
-            
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
-            >
-              Start Conversation
-            </button>
-          </form>
-        </div>
+                <MessageSquare />
+                Start Conversation
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
 
         {/* Chat list */}
         <div className="space-y-4">
-          <h2 className="text-xl font-semibold text-gray-900">Recent Chats</h2>
+          <h2 className="text-xl font-semibold">Recent Conversations</h2>
           {chats.length === 0 ? (
-            <div className="text-center py-12 text-gray-500">
-              <p className="text-lg">No chats yet</p>
-              <p className="text-sm">Start a new conversation to get started!</p>
-            </div>
+            <Card>
+              <CardContent className="flex flex-col items-center justify-center py-12 text-center">
+                <MessageSquare className="text-muted-foreground mb-4 size-12" />
+                <p className="text-muted-foreground text-lg font-medium">
+                  No chats yet
+                </p>
+                <p className="text-muted-foreground mt-1 text-sm">
+                  Start a new conversation to get started!
+                </p>
+              </CardContent>
+            </Card>
           ) : (
-            <div className="grid gap-4">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {chats.map((chat) => (
-                <Link
-                  key={chat.id}
-                  href={`/inertia/chats/${chat.id}`}
-                  className="block bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow border border-gray-200"
-                >
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <h3 className="font-semibold text-gray-900">
-                        Chat #{chat.id}
-                      </h3>
-                      <p className="text-sm text-gray-600 mt-1">
-                        Using {chat.model_name}
-                      </p>
-                      <p className="text-sm text-gray-500 mt-1">
-                        {chat.messages_count} messages
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-500">
-                        {new Date(chat.created_at).toLocaleDateString()}
-                      </p>
-                    </div>
-                  </div>
+                <Link key={chat.id} href={`/chats/${chat.id}`}>
+                  <Card className="transition-all hover:shadow-md">
+                    <CardHeader>
+                      <div className="flex items-start justify-between gap-2">
+                        <CardTitle className="line-clamp-1">
+                          Chat #{chat.id}
+                        </CardTitle>
+                        <Badge variant="secondary" className="shrink-0">
+                          {chat.messages_count} msg
+                        </Badge>
+                      </div>
+                      <CardDescription className="line-clamp-1">
+                        {chat.model_name}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="text-muted-foreground flex items-center gap-1 text-xs">
+                      <span>{formatDate(chat.created_at)}</span>
+                    </CardContent>
+                  </Card>
                 </Link>
               ))}
             </div>
           )}
+        </div>
         </div>
       </div>
     </>

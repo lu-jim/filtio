@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MessagesController < ApplicationController
   before_action :set_chat
 
@@ -6,10 +8,9 @@ class MessagesController < ApplicationController
 
     ChatResponseJob.perform_later(@chat.id, content)
 
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to @chat }
-    end
+    # For Inertia, we'll redirect back to the chat page
+    # The real-time updates will be handled via Action Cable
+    redirect_to chat_path(@chat)
   end
 
   private
@@ -22,3 +23,4 @@ class MessagesController < ApplicationController
     params[:message][:content]
   end
 end
+

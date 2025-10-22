@@ -1,5 +1,12 @@
 import { Head, Link, useForm } from '@inertiajs/react'
 import React, { useState } from 'react'
+import { Navbar } from '../../components/Navbar'
+import { Button } from '../../components/Button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/Card'
+import { Label } from '../../components/Label'
+import { Select } from '../../components/Select'
+import { Textarea } from '../../components/Textarea'
+import { MessageSquare } from 'lucide-react'
 
 interface Model {
   id: number
@@ -24,7 +31,7 @@ export default function ChatNew({ selected_model, models }: Props) {
     if (!prompt.trim() || !data.model) return
 
     setData('prompt', prompt)
-    post('/inertia/chats', {
+    post('/chats', {
       data: {
         chat: {
           model: data.model,
@@ -38,77 +45,85 @@ export default function ChatNew({ selected_model, models }: Props) {
     <>
       <Head title="New Chat" />
       
-      <div className="max-w-2xl mx-auto p-6">
-        <div className="mb-8">
-          <Link 
-            href="/inertia/chats" 
-            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
-          >
-            ← Back to chats
-          </Link>
-          <h1 className="text-3xl font-bold text-gray-900 mt-4">New Chat</h1>
-        </div>
+      <div className="min-h-screen bg-background">
+        <Navbar />
 
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label htmlFor="model" className="block text-sm font-medium text-gray-700 mb-2">
-                Choose a model
-              </label>
-              <select
-                id="model"
-                value={data.model}
-                onChange={(e) => setData('model', e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                required
-              >
-                <option value="">Select a model...</option>
-                {models.map((model) => (
-                  <option key={model.id} value={model.id}>
-                    {model.name}
-                  </option>
-                ))}
-              </select>
-              {errors.model && (
-                <p className="mt-1 text-sm text-red-600">{errors.model}</p>
-              )}
+        <div className="mx-auto max-w-2xl space-y-6 p-6">
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">New Chat</h1>
+            <p className="text-muted-foreground mt-1 text-sm">
+              Start a conversation with an AI language model
+            </p>
+          </div>
+
+        <Card>
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <MessageSquare className="size-5 text-primary" />
+              <CardTitle>Create a new conversation</CardTitle>
             </div>
-            
-            <div>
-              <label htmlFor="prompt" className="block text-sm font-medium text-gray-700 mb-2">
-                Your message
-              </label>
-              <textarea
-                id="prompt"
-                value={prompt}
-                onChange={(e) => setPrompt(e.target.value)}
-                placeholder="Type your message here..."
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none"
-                rows={4}
-                required
-              />
-              {errors.prompt && (
-                <p className="mt-1 text-sm text-red-600">{errors.prompt}</p>
-              )}
-            </div>
-            
-            <div className="flex gap-4">
-              <button
-                type="submit"
-                disabled={processing || !prompt.trim() || !data.model}
-                className="flex-1 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {processing ? 'Starting chat...' : 'Start Conversation'}
-              </button>
+            <CardDescription>
+              Choose a model and start chatting
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="model">Model</Label>
+                <Select
+                  id="model"
+                  value={data.model}
+                  onChange={(e) => setData('model', e.target.value)}
+                  required
+                  aria-invalid={!!errors.model}
+                >
+                  <option value="">Select a model...</option>
+                  {models.map((model) => (
+                    <option key={model.id} value={model.id}>
+                      {model.name}
+                    </option>
+                  ))}
+                </Select>
+                {errors.model && (
+                  <p className="text-destructive text-sm">{errors.model}</p>
+                )}
+              </div>
               
-              <Link
-                href="/inertia/chats"
-                className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors font-medium"
-              >
-                Cancel
-              </Link>
-            </div>
-          </form>
+              <div className="space-y-2">
+                <Label htmlFor="prompt">Your message</Label>
+                <Textarea
+                  id="prompt"
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                  placeholder="Type your message here..."
+                  rows={4}
+                  required
+                  aria-invalid={!!errors.prompt}
+                />
+                {errors.prompt && (
+                  <p className="text-destructive text-sm">{errors.prompt}</p>
+                )}
+              </div>
+              
+              <div className="flex gap-3">
+                <Button
+                  type="submit"
+                  disabled={processing || !prompt.trim() || !data.model}
+                  className="flex-1"
+                  size="lg"
+                >
+                  {processing ? 'Starting chat...' : 'Start Conversation'}
+                </Button>
+                
+                <Link href="/chats" className="flex-shrink-0">
+                  <Button type="button" variant="outline" size="lg">
+                    Cancel
+                  </Button>
+                </Link>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
         </div>
       </div>
     </>
