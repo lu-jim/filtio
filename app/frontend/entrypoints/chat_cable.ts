@@ -39,3 +39,4 @@ class ChatChannel {
 }
 
 export default ChatChannel
+

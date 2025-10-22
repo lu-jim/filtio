@@ -1,10 +1,10 @@
 import React from 'react'
-import Layout from '../../components/Layout'
 import { Link } from '@inertiajs/react'
-import { ThemeToggle } from '../../components/ThemeToggle'
+import { Navbar } from '../../components/Navbar'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction } from '../../components/Card'
 import { Button } from '../../components/Button'
 import { Badge } from '../../components/Badge'
+import { Plus } from 'lucide-react'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -31,23 +31,14 @@ interface Props {
 export default function CompaniesIndex({ companies }: Props) {
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border px-8 py-6" role="banner">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-semibold text-foreground">Filt.io</h1>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <Button asChild>
-              <Link href="/companies/new">
-                Add New Company
-              </Link>
-            </Button>
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+      <Navbar>
+        <Button asChild size="sm">
+          <Link href="/companies/new">
+            <Plus />
+            Add Company
+          </Link>
+        </Button>
+      </Navbar>
 
       <main className="max-w-[1600px] mx-auto px-8 py-8 w-full" role="main">
         <div className="flex justify-between items-center mb-8">

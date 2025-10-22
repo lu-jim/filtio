@@ -1,13 +1,8 @@
 import React, { useState } from 'react'
-import Layout from '../../components/Layout'
 import { Link, router } from '@inertiajs/react'
-// Temporarily comment out demo components to fix hooks issue
-// import { ParticipantColumn } from '../../demo/participant-column'
-// import { InsightsColumn } from '../../demo/insights-column'
-// import { SentimentColumn } from '../../demo/sentiment-column'
+import { Navbar } from '../../components/Navbar'
 import { Button } from '../../components/Button'
-import { ThemeToggle } from '../../components/ThemeToggle'
-import { Menu, Plus, X } from 'lucide-react'
+import { Plus, X } from 'lucide-react'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -103,39 +98,13 @@ export default function CompaniesShow({ company, calls }: Props) {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border px-8 py-6" role="banner">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-semibold text-foreground">Filt.io</h1>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-              <Link
-                href={`/companies/${company.id}/edit`}
-                className="bg-primary hover:bg-primary/90 text-primary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
-              >
-                Edit Company
-              </Link>
-              <Link
-                href="/companies"
-                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
-              >
-                Back to Companies
-              </Link>
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="sm"
-              className="hover:bg-hover-overlay transition-colors duration-200"
-              aria-label="Open main menu"
-              aria-haspopup="menu"
-            >
-              <Menu className="h-5 w-5" aria-hidden="true" />
-            </Button>
-          </div>
-        </div>
-      </header>
+      <Navbar>
+        <Button asChild size="sm">
+          <Link href={`/companies/${company.id}/edit`}>
+            Edit Company
+          </Link>
+        </Button>
+      </Navbar>
 
       <main className="grid grid-cols-1 lg:grid-cols-3 gap-8 p-8" role="main">
         <section className="lg:col-span-1" aria-labelledby="participants-heading">

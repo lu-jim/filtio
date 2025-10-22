@@ -32,22 +32,6 @@
   </head>
 
   <body>
-    <nav class="bg-white shadow-sm border-b">
-      <div class="container mx-auto px-5 py-4">
-        <div class="flex justify-between items-center">
-          <h1 class="text-xl font-semibold">
-            <%= link_to "Filtio", root_path, class: "text-blue-600 hover:text-blue-800" %>
-          </h1>
-          <div class="space-x-4">
-            <%= link_to "Companies", companies_path, class: "text-gray-600 hover:text-gray-900" %>
-            <%= link_to "Chats", chats_path, class: "text-gray-600 hover:text-gray-900" %>
-            <%= link_to "Inertia Chats", inertia_chats_path, class: "text-blue-600 hover:text-blue-800 font-medium" %>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <main class="container mx-auto mt-8 px-5">
-      <%= yield %>
-    </main>
+    <%= yield %>
   </body>
 </html>

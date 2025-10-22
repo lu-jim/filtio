@@ -1,8 +1,7 @@
 import React from 'react'
-import Layout from '../../components/Layout'
 import CompanyForm from './CompanyForm'
-import { ThemeToggle } from '../../components/ThemeToggle'
 import { Link } from '@inertiajs/react'
+import { Navbar } from '../../components/Navbar'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -30,24 +29,7 @@ interface Props {
 export default function CompaniesNew({ company }: Props) {
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border px-8 py-6" role="banner">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3">
-              <h1 className="text-2xl font-semibold text-foreground">Filt.io</h1>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/companies"
-              className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-medium py-2 px-4 rounded-lg transition duration-200"
-            >
-              Back to Companies
-            </Link>
-            <ThemeToggle />
-          </div>
-        </div>
-      </header>
+      <Navbar />
 
       <main className="container mx-auto px-4 py-8" role="main">
         <div className="max-w-4xl mx-auto">
