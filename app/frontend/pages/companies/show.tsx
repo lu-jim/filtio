@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, router } from '@inertiajs/react'
 import { Navbar } from '../../components/Navbar'
-import { Button } from '../../components/Button'
+import { Button } from '../../components/ui/button'
 import { Plus, X } from 'lucide-react'
 
 // TypeScript interfaces for the data structure

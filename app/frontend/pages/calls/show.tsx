@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from '@inertiajs/react'
 import { Navbar } from '../../components/Navbar'
-import { Button } from '../../components/Button'
+import { Button } from '../../components/ui/button'
 
 // TypeScript interfaces for the data structure
 interface Company {

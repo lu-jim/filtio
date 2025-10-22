@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link, router } from '@inertiajs/react'
 import { Navbar } from '../../components/Navbar'
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction } from '../../components/Card'
-import { Button, buttonVariants } from '../../components/Button'
-import { Badge } from '../../components/Badge'
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../components/AlertDialog'
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, CardAction } from '../../components/ui/card'
+import { Button, buttonVariants } from '../../components/ui/button'
+import { Badge } from '../../components/ui/badge'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '../../components/ui/alert-dialog'
 import { Plus } from 'lucide-react'
 
 // TypeScript interfaces for the data structure

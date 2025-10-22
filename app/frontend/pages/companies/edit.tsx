@@ -2,7 +2,7 @@ import React from 'react'
 import CompanyForm from './CompanyForm'
 import { Link } from '@inertiajs/react'
 import { Navbar } from '../../components/Navbar'
-import { Button } from '../../components/Button'
+import { Button } from '../../components/ui/button'
 
 // TypeScript interfaces for the data structure
 interface Founder {
@@ -19,8 +19,8 @@ interface Company {
   logo?: string
   tagline?: string
   year?: number
-  size?: '0-10' | '50-100' | '100-250' | '+250'
-  founders: Founder[]
+  size?: string
+  founders?: Founder[]
 }
 
 interface Props {

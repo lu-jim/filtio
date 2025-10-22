@@ -1,11 +1,11 @@
 import { Head, Link, useForm } from '@inertiajs/react'
 import React, { useState } from 'react'
 import { Navbar } from '../../components/Navbar'
-import { Button } from '../../components/Button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/Card'
-import { Label } from '../../components/Label'
-import { Select } from '../../components/Select'
-import { Textarea } from '../../components/Textarea'
+import { Button } from '../../components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../../components/ui/card'
+import { Label } from '../../components/ui/label'
+import { Select } from '../../components/ui/select'
+import { Textarea } from '../../components/ui/textarea'
 import { MessageSquare } from 'lucide-react'
 
 interface Model {
