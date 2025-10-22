@@ -1,6 +1,6 @@
 import * as React from "react"
 import { Link } from "@inertiajs/react"
-import { Button } from "./Button"
+import { Button } from "./ui/button"
 import { ThemeToggle } from "./ThemeToggle"
 import { Building2, MessageSquare, Menu, X } from "lucide-react"
 import { cn } from "../lib/utils"

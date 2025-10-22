@@ -16,6 +16,7 @@ class CompaniesController < ApplicationController
   def new
     @company = Company.new
     @company.founders.build
+    render inertia: "companies/new", props: { company: @company }
   end
 
   def create

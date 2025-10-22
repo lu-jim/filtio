@@ -18,5 +18,8 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "registries": {}
+  "registries": {},
+  "resolveAlias": {
+    "@": "./app/frontend"
+  }
 }
