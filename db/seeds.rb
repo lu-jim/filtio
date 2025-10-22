@@ -7,6 +7,8 @@ companies_data = [
   {
     name: "TechFlow AI",
     website: "https://techflow-ai.com",
+    year: 2022,
+    size: "0-10",
     founders: [
       { name: "Sarah Chen", linkedin: "https://linkedin.com/in/sarahchen" },
       { name: "Michael Rodriguez", linkedin: "https://linkedin.com/in/mrodriguez" }
@@ -15,6 +17,8 @@ companies_data = [
   {
     name: "GreenEnergy Solutions",
     website: "https://greenenergy.io",
+    year: 2021,
+    size: "50-100",
     founders: [
       { name: "David Kumar", linkedin: "https://linkedin.com/in/davidkumar" }
     ]
@@ -22,6 +26,8 @@ companies_data = [
   {
     name: "FinTech Innovations",
     website: "https://fintech-innovations.com",
+    year: 2023,
+    size: "0-10",
     founders: [
       { name: "Emily Johnson", linkedin: "https://linkedin.com/in/emilyjohnson" },
       { name: "Alex Thompson", linkedin: "https://linkedin.com/in/alexthompson" },
@@ -33,6 +39,8 @@ companies_data = [
 companies_data.each do |company_data|
   company = Company.find_or_create_by!(name: company_data[:name]) do |c|
     c.website = company_data[:website]
+    c.year = company_data[:year]
+    c.size = company_data[:size]
   end
 
   company_data[:founders].each do |founder_data|

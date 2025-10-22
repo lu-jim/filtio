@@ -15,9 +15,12 @@ export default defineConfig({
     }
   },
   server: {
-    host: '192.168.10.10', // replace with the IP address of the Homestead machine
+    // Use localhost by default (works well on WSL)
+    host: 'localhost',
+    // Let vite_ruby dictate the port via config/vite.json when used,
+    // otherwise Vite defaults to 5173.
     hmr: {
-        host: '192.168.10.10', // replace with the IP address of the Homestead machine
-    }
-},
+      host: 'localhost',
+    },
+  },
 })

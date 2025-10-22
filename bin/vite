@@ -10,6 +10,13 @@
 
 ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
 
+# Ensure we run from the project root so vite_ruby resolves config/vite.json
+begin
+  Dir.chdir(File.expand_path("..", __dir__))
+rescue StandardError
+  # no-op; fallback to current directory
+end
+
 require "rubygems"
 require "bundler/setup"
 
