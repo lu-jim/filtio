@@ -190,19 +190,21 @@ export default function CompaniesShow({ company, calls }: Props) {
                 )}
 
                 {company.founders && company.founders.length > 0 && (
-                  <div className="space-y-2">
+                  <div className="grid grid-cols-2 gap-2">
                     {company.founders.map((founder) => (
-                      <div key={founder.id} className="bg-muted rounded-lg p-3">
-                        <p className="font-medium text-card-foreground">{founder.name}</p>
-                        {founder.linkedin && (
-                          <a 
-                            href={founder.linkedin} 
-                            target="_blank" 
+                      <div key={founder.id} className="bg-muted rounded-lg p-2 flex flex-col justify-between min-h-[60px]">
+                        <p className="font-medium text-card-foreground text-sm truncate">{founder.name}</p>
+                        {founder.linkedin ? (
+                          <a
+                            href={founder.linkedin}
+                            target="_blank"
                             rel="noopener noreferrer"
-                            className="text-primary hover:underline text-sm"
+                            className="text-primary hover:underline text-xs mt-1"
                           >
-                            LinkedIn Profile
+                            LinkedIn
                           </a>
+                        ) : (
+                          <div className="h-4"></div>
                         )}
                       </div>
                     ))}
@@ -222,6 +224,11 @@ export default function CompaniesShow({ company, calls }: Props) {
                         {call.participants && call.participants.length > 0 && (
                           <p className="text-sm text-muted-foreground">
                             Participants: {call.participants.map(p => p.name).join(', ')}
+                          </p>
+                        )}
+                        {call.transcript_file && (
+                          <p className="text-sm text-muted-foreground mt-2">
+                            {truncateText(call.transcript_file, 100)}
                           </p>
                         )}
                       </div>

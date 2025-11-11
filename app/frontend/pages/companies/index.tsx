@@ -106,19 +106,19 @@ export default function CompaniesIndex({ companies }: Props) {
                     Founders
                   </div>
                   {company.founders && company.founders.length > 0 ? (
-                    <div className="space-y-2">
+                    <div className="grid grid-cols-2 gap-2">
                       {company.founders.map((founder) => (
                         <div
                           key={founder.id}
-                          className="flex items-center justify-between text-sm"
+                          className="flex flex-col justify-between text-sm bg-secondary/50 rounded p-2 min-h-[60px]"
                         >
-                          <span className="text-foreground">{founder.name}</span>
-                          {founder.linkedin && (
-                            <Button 
-                              variant="link" 
-                              size="sm" 
-                              asChild 
-                              className="h-auto p-0 text-xs"
+                          <span className="text-foreground font-medium truncate">{founder.name}</span>
+                          {founder.linkedin ? (
+                            <Button
+                              variant="link"
+                              size="sm"
+                              asChild
+                              className="h-auto p-0 text-xs self-start mt-1"
                             >
                               <a
                                 href={founder.linkedin}
@@ -128,6 +128,8 @@ export default function CompaniesIndex({ companies }: Props) {
                                 LinkedIn
                               </a>
                             </Button>
+                          ) : (
+                            <div className="h-4"></div>
                           )}
                         </div>
                       ))}

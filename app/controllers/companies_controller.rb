@@ -4,13 +4,13 @@ class CompaniesController < ApplicationController
   def index
     @companies = Company.includes(:founders).all
 
-    render inertia: "companies/index", props: { companies: @companies }
+    render inertia: "companies/index", props: { companies: @companies.as_json(include: :founders) }
   end
 
   def show
     @calls = @company.recent_calls.includes(:participants)
 
-    render inertia: "companies/show", props: { company: @company, calls: @calls }
+    render inertia: "companies/show", props: { company: @company.as_json(include: :founders), calls: @calls.as_json(include: :participants) }
   end
 
   def new
